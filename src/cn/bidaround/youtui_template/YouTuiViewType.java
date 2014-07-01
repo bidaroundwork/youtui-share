@@ -12,4 +12,6 @@ public interface YouTuiViewType {
 	//public static final int WHITE_POPUP = 1;
 	/**白色列表样式*/
 	public static final int WHITE_LIST = 2;
+	
+	public static final int WHITE_GRID = 1;
 }

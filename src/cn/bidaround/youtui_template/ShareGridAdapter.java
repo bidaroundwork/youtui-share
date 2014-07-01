@@ -60,10 +60,12 @@ public class ShareGridAdapter extends BaseAdapter {
 		if (convertView == null) {
 			View view = null;
 			if(showStyle==YouTuiViewType.BLACK_POPUP){
-				view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("pagergrid_item", "layout", YtCore.packName), null);			
+				view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_pagergrid_item", "layout", YtCore.packName), null);			
 			}else if(showStyle==YouTuiViewType.WHITE_LIST){
-				view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("sharelist_item", "layout", YtCore.packName), null);
-			}	
+				view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_sharelist_item", "layout", YtCore.packName), null);
+			}else if(showStyle==YouTuiViewType.WHITE_GRID){
+				view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_whiteviewpager_grid_item", "layout", YtCore.packName), null);
+			}
 			convertView = view;
 		}
 		
@@ -84,6 +86,15 @@ public class ShareGridAdapter extends BaseAdapter {
 			// 积分textview
 			textView.setText(ShareList.getTitle(list.get(position)));
 			pointText = (TextView) convertView.findViewById(YtCore.res.getIdentifier("sharelistitem_point_text", "id", YtCore.packName));
+		}else if(showStyle==YouTuiViewType.WHITE_GRID){
+			ImageView imageView = (ImageView) convertView.findViewById(YtCore.res.getIdentifier("whitepagergrid_logo_imageview", "id", YtCore.packName));
+			TextView textView = (TextView) convertView.findViewById(YtCore.res.getIdentifier("whitepagergrid_logo_textview", "id", YtCore.packName));
+			// 设置社交平台logo 
+			imageView.setImageResource(ShareList.getLogo(list.get(position), act));
+			// 积分textview
+			textView.setText(ShareList.getTitle(list.get(position)));
+			textView.setTextColor(0xffa8a8a8);
+			pointText = (TextView) convertView.findViewById(YtCore.res.getIdentifier("whitepagergrid_point_tv", "id", YtCore.packName));
 		}
 
 		// 显示积分

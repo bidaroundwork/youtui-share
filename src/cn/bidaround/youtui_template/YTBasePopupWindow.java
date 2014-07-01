@@ -34,7 +34,7 @@ public abstract class YTBasePopupWindow extends PopupWindow implements OnItemCli
 	public static Handler mHandler = null;
 
 	public YTBasePopupWindow(Context context, boolean hasAct) {
-		super(context);
+		super(context);	
 		act = (Activity) context;
 		YTBasePopupWindow.hasAct = hasAct;
 		initData();

@@ -1,6 +1,7 @@
 package cn.bidaround.youtui_template;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -27,9 +27,8 @@ import cn.bidaround.ytcore.util.Util;
  * @author youtui
  * @since 14/4/25
  */
-public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener, OnItemClickListener, OnPageChangeListener {
+public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener, OnPageChangeListener {
 	/**判断该分享页面是否正在运行*/
-	public static boolean isShowing;
 	private GridView pagerOne_gridView, pagerTwo_gridView;
 	private ShareGridAdapter pagerOne_gridAdapter, pagerTwo_gridAdapter;
 	private View sharepopup_indicator_linelay;
@@ -38,6 +37,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	private ViewPager viewPager;
 	private YtTemplate template;
 	private ShareData shareData;
+	private final int ITEM_AMOUNT = 6;
 
 	public ViewPagerPopup(Activity act, int showStyle,boolean hasAct,YtTemplate template,ShareData shareData) {
 		super(act,hasAct);
@@ -52,7 +52,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	 */
 	@SuppressWarnings("deprecation")
 	public void show() {
-		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("popup_viewpager", "layout", YtCore.packName), null);
+		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_popup_viewpager", "layout", YtCore.packName), null);
 		initButton(view);
 		initViewPager(view);
 		// 设置popupwindow的属�?
@@ -63,7 +63,6 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		setHeight(Util.dip2px(act, 310));
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
-		isShowing = true;
 	}
 
 	/**
@@ -77,9 +76,9 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		oneIamge = (ImageView) view.findViewById(YtCore.res.getIdentifier("sharepopup_one_iv", "id", YtCore.packName));
 		Button cancelBt = (Button) view.findViewById(YtCore.res.getIdentifier("cancel_bt", "id", YtCore.packName));
 		if(hasAct){
-			cancelBt.setText("我已分享，参与抽奖");
+			cancelBt.setText("积分兑换");
 		}else{
-			cancelBt.setText("取消");
+			cancelBt.setText("取  消");
 		}
 		cancelBt.setOnClickListener(this);
 	}
@@ -94,7 +93,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		enList = KeyInfo.enList;
 		// 如果分享的数目<=6，只放置一页
 		if (enList.size() <= 6) {
-			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("share_pager", "layout", YtCore.packName), null);
+			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerOne_gridView = (GridView) pagerOne.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
 			pagerOne_gridAdapter = new ShareGridAdapter(act, enList, showStyle);
 			pagerOne_gridView.setAdapter(pagerOne_gridAdapter);
@@ -107,7 +106,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 				pagerOneList.add(enList.get(i));
 			}
 			// 初始化第一页
-			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("share_pager", "layout", YtCore.packName), null);
+			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerOne_gridView = (GridView) pagerOne.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
 			pagerOne_gridAdapter = new ShareGridAdapter(act, pagerOneList, showStyle);
 			pagerOne_gridView.setAdapter(pagerOne_gridAdapter);
@@ -119,7 +118,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 				pagerTwoList.add(enList.get(i));
 			}
 			// 初始化第二页
-			View pagerTwo = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("share_pager", "layout", YtCore.packName), null);
+			View pagerTwo = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerTwo_gridView = (GridView) pagerTwo.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
 			pagerTwo_gridAdapter = new ShareGridAdapter(act, pagerTwoList, showStyle);
 			pagerTwo_gridView.setAdapter(pagerTwo_gridAdapter);
@@ -171,16 +170,14 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
-				new YTShare(act).doGridShare(position, 0,template,shareData);
+				new YTShare(act).doGridShare(position, 0,template,shareData,ITEM_AMOUNT);
 
 			} else if (adapterView == pagerTwo_gridView) {
-				new YTShare(act).doGridShare(position, 1,template,shareData);
+				new YTShare(act).doGridShare(position, 1,template,shareData,ITEM_AMOUNT);
 			}
 		} else {
 			Toast.makeText(act, "无网络连接，请查看您的网络情况", Toast.LENGTH_SHORT).show();
 		}
-		
-
 	}
 	/**
 	 * 刷新显示积分
@@ -219,12 +216,12 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		// viewpager下标
 		switch (index) {
 		case 0:
-			zeroIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("guide_dot_white", "drawable", YtCore.packName)));
-			oneIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("guide_dot_black", "drawable", YtCore.packName)));
+			zeroIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("yt_guide_dot_white", "drawable", YtCore.packName)));
+			oneIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("yt_guide_dot_black", "drawable", YtCore.packName)));
 			break;
 		case 1:
-			zeroIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("guide_dot_black", "drawable", YtCore.packName)));
-			oneIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("guide_dot_white", "drawable", YtCore.packName)));
+			zeroIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("yt_guide_dot_black", "drawable", YtCore.packName)));
+			oneIamge.setImageDrawable(act.getResources().getDrawable(YtCore.res.getIdentifier("yt_guide_dot_white", "drawable", YtCore.packName)));
 			break;
 
 		default:
@@ -241,7 +238,6 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	@Override
 	public void dismiss() {
 		// TODO Auto-generated method stub
-		isShowing = false;
 		super.dismiss();
 	}
 }

@@ -1,7 +1,6 @@
 package cn.bidaround.youtui_template;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Gravity;
@@ -26,7 +25,6 @@ import cn.bidaround.ytcore.util.Util;
  */
 public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	/**用于判断分享页面是否正在运行*/
-	public static boolean isShowing = true;
 	private ArrayList<String> enList = KeyInfo.enList;
 	private Button sharelist_knowaction_btn;
 	private ShareGridAdapter adapter;
@@ -44,21 +42,20 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	 */
 	@SuppressWarnings("deprecation")
 	public void show() {
-		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("popup_list", "layout", YtCore.packName), null);
+		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_popup_list", "layout", YtCore.packName), null);
 		initListView(view);
 		initButton(view);
 
-		// 设置popupwindow的属�?
+		// 设置popupwindow的属
 		setFocusable(true);
 		setOutsideTouchable(true);
-		setBackgroundDrawable(YtCore.res.getDrawable(YtCore.res.getIdentifier("side", "drawable", YtCore.packName)));
+		setBackgroundDrawable(YtCore.res.getDrawable(YtCore.res.getIdentifier("yt_side", "drawable", YtCore.packName)));
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
 		setHeight(Util.dip2px(act, 350));
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		// R.style.YtSharePopupAnim
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
-		isShowing = true;
 	}
 
 	/**
@@ -82,9 +79,9 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		// 如果么有活动显示取消，如果有活动显示了解活动规则
 		sharelist_knowaction_btn = (Button) view.findViewById(YtCore.res.getIdentifier("sharelist_knowaction_btn", "id", YtCore.packName));
 		if (hasAct) {
-			sharelist_knowaction_btn.setText("我已分享，参与抽奖");
+			sharelist_knowaction_btn.setText("积分兑换");
 		} else {
-			sharelist_knowaction_btn.setText("取消");
+			sharelist_knowaction_btn.setText("取  消");
 		}
 
 		sharelist_knowaction_btn.setOnClickListener(this);
@@ -133,7 +130,6 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	 */
 	@Override
 	public void dismiss() {
-		isShowing = false;
 		super.dismiss();
 	}
 	/**关闭 分享界面*/

@@ -69,6 +69,8 @@ public class YtTemplate {
 			new ViewPagerPopup(act, youTuiViewType, needPoint,this,shareData).show();
 		}else if(youTuiViewType == YouTuiViewType.WHITE_LIST){
 			new ListPopup(act, youTuiViewType, needPoint, this,shareData).show();
+		}else if(youTuiViewType == YouTuiViewType.WHITE_GRID){
+			new WhiteViewPagerTemplate(act, youTuiViewType, needPoint, this, shareData).show();
 		}
 	}
 	/**
@@ -81,18 +83,7 @@ public class YtTemplate {
 			ListPopup.close();
 		}
 	}
-	/**
-	 * 主分享界面是否正在显示
-	 * @return 主分享界面是否正在显示
-	 */
-	public boolean isShowing(){
-		if(youTuiViewType == YouTuiViewType.BLACK_POPUP){
-			return ViewPagerPopup.isShowing;
-		}else if(youTuiViewType == YouTuiViewType.WHITE_LIST){
-			return ListPopup.isShowing;
-		}
-		return true;
-	}
+
 	/**
 	 * YtTemplate初始化,开发者应该在程序的入口调用,初始化后后续操作才能正常进行
 	 * @param act

@@ -3,10 +3,8 @@
 
     <!--
     	分享平台的注册信息，一定要填入在相应平台注册的正确信息，不然应用无法完成授权，
-	             也无法进行分享，enable属性决定是否分享该平台
+	             也无法进行分享，enable属性决定是否分享该平台
     -->
-
-
     <!-- 友推sdk注册地址 : http://youtui.mobi/ -->
 
     <YouTui AppKey="10021" />
@@ -29,14 +27,15 @@
         SecretKey="506ccdbda36046d197801e79c4ebba23" />
 
     <!-- 新浪微博注册地址:http://open.weibo.com/ -->
+    <!-- IsNoKeyShare属性,如果开发者没有新浪微博的key但是希望能使用新浪微博的分享功能,可以将IsNoKeyShare设置为true,这样就不需要设置AppKey,AppSecret,RedirectUrl而是使用友推默认的新浪注册信息 -->
 
     <SinaWeibo
         AppKey="2502314449"
         AppSecret="df10502d7b422937adea431cd985904a"
         Enable="true"
+        IsNoKeyShare=""
         RedirectUrl="http://youtui.mobi/weiboResponse" />
-
-    <!-- QQ,QQ空间,腾讯微博注册地址:http://open.qq.com/ -->
+    <!-- QQ,QQ空间:http://open.qq.com/ -->
 
     <QQ
         AppId="1101255276"
@@ -47,17 +46,23 @@
         AppId="1101255276"
         AppKey="h4sOXgtTtsqRjoOq"
         Enable="true" />
+    <!-- 腾讯微博注册地址:http://dev.t.qq.com/ -->
+    <!-- IsNoKeyShare属性,如果开发者没有腾讯微博的key但是希望能使用腾讯微博的分享功能,可以将IsNoKeyShare设置为true,这样就不需要设置AppKey,AppSecret,RedirectUrl而是使用友推默认的腾讯微博注册信息 -->
 
     <TencentWeibo
         AppKey="801443192"
         AppSecret="45d65f2d2650637c96ece74f4a67b686"
         Enable="true"
+        IsNoKeyShare=""
         RedirectUrl="http://yt.bidaround.cn/" />
 
-    <ShortMessage Enable="true" />
+    <ShortMessage Enable="" />
 
     <Email Enable="true" />
     <!-- 调用系统分享，适用于暂时没有申请到key的分享，该分享不会获得积分，也不会被统计到 -->
+    <!-- 复制链接 -->
+
+    <CopyLink Enable="true" />
 
     <More Enable="true" />
 

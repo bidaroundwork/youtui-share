@@ -11,25 +11,27 @@ import android.content.res.Resources;
 
 public class ShareList {
 	/**微信*/
-	public static String WECHAT = "Wechat";
+	public static final String WECHAT = "Wechat";
 	/**朋友圈*/
-	public static String WECHATMOMENTS = "WechatMoments";
+	public static final String WECHATMOMENTS = "WechatMoments";
 	/**新浪微博*/
-	public static String SINAWEIBO = "SinaWeibo";
+	public static final String SINAWEIBO = "SinaWeibo";
 	/**QQ*/
-	public static String QQ = "QQ";
+	public static final String QQ = "QQ";
 	/**QQ空间*/
-	public static String QZONE = "QZone";
+	public static final String QZONE = "QZone";
 	/**腾讯微博*/
-	public static String TENCENTWEIBO = "TencentWeibo";
+	public static final String TENCENTWEIBO = "TencentWeibo";
 	/**人人网*/
-	public static String RENREN = "Renren";
+	public static final String RENREN = "Renren";
 	/**短信*/
-	public static String SHORTMESSAGE = "ShortMessage";
+	public static final String SHORTMESSAGE = "ShortMessage";
 	/**邮件*/
-	public static String EMAIL = "Email";
+	public static final String EMAIL = "Email";
 	/**更多分享*/
-	public static String MORE_SHARE = "More";
+	public static final String MORE_SHARE = "More";
+	/**复制链接*/
+	public static final String COPYLINK = "CopyLink";
 	/**
 	 * 获取分享平台的lolo
 	 * @param name
@@ -41,34 +43,36 @@ public class ShareList {
 		Resources res = context.getResources();
 		if(WECHAT.equals(name)){
 			
-			return res.getIdentifier("wxact", "drawable", packName);
+			return res.getIdentifier("yt_wxact", "drawable", packName);
 		}else if(WECHATMOMENTS.equals(name)){
 			
-			return res.getIdentifier("pyqact", "drawable", packName);
+			return res.getIdentifier("yt_pyqact", "drawable", packName);
 		}else if(SINAWEIBO.equals(name)){
 			
-			return res.getIdentifier("xinlangact", "drawable", packName);
+			return res.getIdentifier("yt_xinlangact", "drawable", packName);
 		}else if(QQ.equals(name)){
 			
-			return res.getIdentifier("qqact", "drawable", packName);
+			return res.getIdentifier("yt_qqact", "drawable", packName);
 		}else if(QZONE.equals(name)){
 			
-			return res.getIdentifier("qqkjact", "drawable", packName);
+			return res.getIdentifier("yt_qqkjact", "drawable", packName);
 		}else if(TENCENTWEIBO.equals(name)){
 			
-			return res.getIdentifier("tengxunact", "drawable", packName);
+			return res.getIdentifier("yt_tengxunact", "drawable", packName);
 		}else if(RENREN.equals(name)){
 			
-			return res.getIdentifier("renrenact", "drawable", packName);
+			return res.getIdentifier("yt_renrenact", "drawable", packName);
 		}else if(SHORTMESSAGE.equals(name)){
 			
-			return res.getIdentifier("messact", "drawable", packName);
+			return res.getIdentifier("yt_messact", "drawable", packName);
 		}else if(EMAIL.equals(name)){
 			
-			return res.getIdentifier("mailact", "drawable", packName);
+			return res.getIdentifier("yt_mailact", "drawable", packName);
 		}else if(MORE_SHARE.equals(name)){
 			
-			return res.getIdentifier("more", "drawable", packName);
+			return res.getIdentifier("yt_more", "drawable", packName);
+		}else if(COPYLINK.equals(name)){
+			return res.getIdentifier("yt_lianjieact", "drawable", packName);
 		}
 		return -1;
 	}
@@ -98,6 +102,8 @@ public class ShareList {
 			return "邮件";
 		}else if(MORE_SHARE.equals(name)){
 			return "更多";
+		}else if(COPYLINK.equals(name)){
+			return "复制链接";
 		}
 		return "";
 	}
