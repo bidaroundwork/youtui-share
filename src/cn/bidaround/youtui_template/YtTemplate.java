@@ -1,7 +1,7 @@
 package cn.bidaround.youtui_template;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Message;
@@ -9,6 +9,7 @@ import cn.bidaround.point.YtPoint;
 import cn.bidaround.point.YtPointListener;
 import cn.bidaround.ytcore.YtCore;
 import cn.bidaround.ytcore.YtShareListener;
+import cn.bidaround.ytcore.data.KeyInfo;
 import cn.bidaround.ytcore.data.ShareData;
 import cn.bidaround.ytcore.data.YtPlatform;
 /**
@@ -17,18 +18,20 @@ import cn.bidaround.ytcore.data.YtPlatform;
  * @since 14/6/19
  *
  */
-public class YtTemplate {
+public class YtTemplate{
 	private Activity act;
-	private static int youTuiViewType;
+	private int youTuiViewType;
 	private boolean needPoint;
 	private HashMap<YtPlatform, YtShareListener> listenerMap = new HashMap<YtPlatform, YtShareListener>();
 	private HashMap<YtPlatform, ShareData> shareDataMap = new HashMap<YtPlatform, ShareData>();
 	private ShareData shareData;
+	private ArrayList<String> enList = new ArrayList<String>();
 	
 	public YtTemplate(Activity act,int youTuiViewType,boolean needPoint){
 		this.act = act;
-		YtTemplate.youTuiViewType = youTuiViewType;
-		this.needPoint = needPoint;
+		this.youTuiViewType = youTuiViewType;
+		this.needPoint = needPoint;		
+		enList.addAll(KeyInfo.enList);
 	}
 
 	/**
@@ -39,6 +42,10 @@ public class YtTemplate {
 	public void addData(YtPlatform platform, ShareData shareData) {
 		shareDataMap.put(platform, shareData);
 	}
+	
+	public int getIndex(YtPlatform platform){
+		return enList.indexOf(YtPlatform.getPlatfornName(platform));
+	}
 	/**
 	 * 获取指定平台的分享信息
 	 * @param platform
@@ -46,6 +53,10 @@ public class YtTemplate {
 	 */
 	public ShareData getData(YtPlatform platform){
 		return shareDataMap.get(platform);
+	}
+	/**移除平台*/
+	public void removePlatform(YtPlatform platform){
+		enList.remove(YtPlatform.getPlatfornName(platform));
 	}
 	/**
 	 * 添加分享监听
@@ -65,22 +76,32 @@ public class YtTemplate {
 	}
 	/**调出分享界面*/
 	public  void show(){
-		if(youTuiViewType == YouTuiViewType.BLACK_POPUP){
-			new ViewPagerPopup(act, youTuiViewType, needPoint,this,shareData).show();
+		
+		if(youTuiViewType == YouTuiViewType.BLACK_POPUP){	
+			new ViewPagerPopup(act, youTuiViewType, needPoint,this,shareData,enList).show();
 		}else if(youTuiViewType == YouTuiViewType.WHITE_LIST){
-			new ListPopup(act, youTuiViewType, needPoint, this,shareData).show();
+			new ListPopup(act, youTuiViewType, needPoint, this,shareData,enList).show();
 		}else if(youTuiViewType == YouTuiViewType.WHITE_GRID){
-			new WhiteViewPagerTemplate(act, youTuiViewType, needPoint, this, shareData).show();
+			new WhiteViewPagerTemplate(act, youTuiViewType, needPoint, this, shareData,enList).show();
 		}
+	}
+	/**
+	 * 获取分享模板的类型
+	 * @return
+	 */
+	public int getViewType(){
+		return youTuiViewType;
 	}
 	/**
 	 * 关闭主分享界面
 	 */
-	public static void dismiss(){
+	public void dismiss(){
 		if(youTuiViewType == YouTuiViewType.BLACK_POPUP){
 			ViewPagerPopup.close();
 		}else if(youTuiViewType == YouTuiViewType.WHITE_LIST){
 			ListPopup.close();
+		}else if(youTuiViewType==YouTuiViewType.WHITE_GRID){
+			WhiteViewPagerTemplate.close();
 		}
 	}
 

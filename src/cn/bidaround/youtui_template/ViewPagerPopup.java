@@ -14,21 +14,21 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import cn.bidaround.point.PointActivity;
 import cn.bidaround.ytcore.YtCore;
-import cn.bidaround.ytcore.data.KeyInfo;
 import cn.bidaround.ytcore.data.ShareData;
 import cn.bidaround.ytcore.util.Util;
 
-
 /**
  * viewpager+gridview 黑色网格样式分享样式
+ * 
  * @author youtui
  * @since 14/4/25
  */
 public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener, OnPageChangeListener {
-	/**判断该分享页面是否正在运行*/
+	/** 判断该分享页面是否正在运行 */
 	private GridView pagerOne_gridView, pagerTwo_gridView;
 	private ShareGridAdapter pagerOne_gridAdapter, pagerTwo_gridAdapter;
 	private View sharepopup_indicator_linelay;
@@ -38,12 +38,14 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	private YtTemplate template;
 	private ShareData shareData;
 	private final int ITEM_AMOUNT = 6;
+	private TextView yt_blackpopup_screencap_text;
 
-	public ViewPagerPopup(Activity act, int showStyle,boolean hasAct,YtTemplate template,ShareData shareData) {
-		super(act,hasAct);
+	public ViewPagerPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template, ShareData shareData, ArrayList<String> enList) {
+		super(act, hasAct);
 		this.showStyle = showStyle;
 		this.template = template;
 		this.shareData = shareData;
+		this.enList = enList;
 		instance = this;
 	}
 
@@ -55,12 +57,12 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_popup_viewpager", "layout", YtCore.packName), null);
 		initButton(view);
 		initViewPager(view);
-		// 设置popupwindow的属�?
+		// 设置popupwindow的属性
 		setFocusable(true);
 		setOutsideTouchable(true);
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
-		setHeight(Util.dip2px(act, 310));
+		setHeight(Util.dip2px(act, 320));
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
 	}
@@ -75,12 +77,15 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		zeroIamge = (ImageView) view.findViewById(YtCore.res.getIdentifier("sharepopup_zero_iv", "id", YtCore.packName));
 		oneIamge = (ImageView) view.findViewById(YtCore.res.getIdentifier("sharepopup_one_iv", "id", YtCore.packName));
 		Button cancelBt = (Button) view.findViewById(YtCore.res.getIdentifier("cancel_bt", "id", YtCore.packName));
-		if(hasAct){
+		if (hasAct) {
 			cancelBt.setText("积分兑换");
-		}else{
+		} else {
 			cancelBt.setText("取  消");
 		}
 		cancelBt.setOnClickListener(this);
+
+		yt_blackpopup_screencap_text = (TextView) view.findViewById(YtCore.res.getIdentifier("yt_blackpopup_screencap_text", "id", YtCore.packName));
+		yt_blackpopup_screencap_text.setOnClickListener(this);
 	}
 
 	/**
@@ -90,7 +95,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		viewPager = (ViewPager) view.findViewById(YtCore.res.getIdentifier("share_viewpager", "id", YtCore.packName));
 		sharepopup_indicator_linelay = view.findViewById(YtCore.res.getIdentifier("sharepopup_indicator_linelay", "id", YtCore.packName));
 		ArrayList<View> pagerList = new ArrayList<View>();
-		enList = KeyInfo.enList;
+		// enList = KeyInfo.enList;
 		// 如果分享的数目<=6，只放置一页
 		if (enList.size() <= 6) {
 			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
@@ -133,9 +138,9 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		if (enList.size() > 6 && enList.size() <= 12) {
 			viewPager.setOnPageChangeListener(this);
 		} else if (enList.size() <= 6) {
-			if(sharepopup_indicator_linelay!= null){
+			if (sharepopup_indicator_linelay != null) {
 				sharepopup_indicator_linelay.setVisibility(View.INVISIBLE);
-			}		
+			}
 		}
 	}
 
@@ -146,19 +151,30 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	public void onClick(View v) {
 
 		if (v.getId() == YtCore.res.getIdentifier("cancel_bt", "id", YtCore.packName)) {
-			/**有活动点击显示活动规则*/
-			if(hasAct){
+			/** 有活动点击显示活动规则 */
+			if (hasAct) {
 				Intent it = new Intent(act, PointActivity.class);
 				act.startActivity(it);
-			}else{
+			} else {
 				this.dismiss();
 			}
-						
-		} else if (v.getId() == YtCore.res.getIdentifier("share_popup_knowtv", "id", YtCore.packName)) {
 
+		} else if (v.getId() == YtCore.res.getIdentifier("share_popup_knowtv", "id", YtCore.packName)) {
 
 		} else if (v.getId() == YtCore.res.getIdentifier("share_popup_checktv", "id", YtCore.packName)) {
 
+		} else if (v.getId() == YtCore.res.getIdentifier("yt_blackpopup_screencap_text", "id", YtCore.packName)) {
+			// 截屏按钮
+			TemplateUtil.GetandSaveCurrentImage(act);
+			Intent it = new Intent(act, ScreenCapEditActivity.class);
+			it.putExtra("viewType", template.getViewType());
+			if(shareData.isAppShare){
+				it.putExtra("target_url", YtCore.getTargetUrl());
+			}else{
+				it.putExtra("target_url", shareData.getTarget_url());	
+			}
+			act.startActivity(it);
+			this.dismiss();
 		}
 
 	}
@@ -170,15 +186,16 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
-				new YTShare(act).doGridShare(position, 0,template,shareData,ITEM_AMOUNT);
+				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance);
 
 			} else if (adapterView == pagerTwo_gridView) {
-				new YTShare(act).doGridShare(position, 1,template,shareData,ITEM_AMOUNT);
+				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance);
 			}
 		} else {
 			Toast.makeText(act, "无网络连接，请查看您的网络情况", Toast.LENGTH_SHORT).show();
 		}
 	}
+
 	/**
 	 * 刷新显示积分
 	 */
@@ -229,15 +246,15 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		}
 
 	}
-	public static void close(){
-		if(instance!=null){
+
+	public static void close() {
+		if (instance != null) {
 			instance.dismiss();
 		}
 	}
-	
+
 	@Override
 	public void dismiss() {
-		// TODO Auto-generated method stub
 		super.dismiss();
 	}
 }

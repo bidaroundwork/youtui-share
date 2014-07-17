@@ -32,6 +32,8 @@ public class ShareList {
 	public static final String MORE_SHARE = "More";
 	/**复制链接*/
 	public static final String COPYLINK = "CopyLink";
+	/***/
+	public static final String SCREENCAP = "ScreenCap";
 	/**
 	 * 获取分享平台的lolo
 	 * @param name
@@ -73,6 +75,8 @@ public class ShareList {
 			return res.getIdentifier("yt_more", "drawable", packName);
 		}else if(COPYLINK.equals(name)){
 			return res.getIdentifier("yt_lianjieact", "drawable", packName);
+		}else if(SCREENCAP.equals(name)){
+			return res.getIdentifier("yt_loadfail", "drawable", packName);
 		}
 		return -1;
 	}
@@ -104,6 +108,8 @@ public class ShareList {
 			return "更多";
 		}else if(COPYLINK.equals(name)){
 			return "复制链接";
+		}else if(SCREENCAP.equals(name)){
+			return "截屏";
 		}
 		return "";
 	}

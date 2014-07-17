@@ -28,12 +28,13 @@
 
     <!-- 新浪微博注册地址:http://open.weibo.com/ -->
     <!-- IsNoKeyShare属性,如果开发者没有新浪微博的key但是希望能使用新浪微博的分享功能,可以将IsNoKeyShare设置为true,这样就不需要设置AppKey,AppSecret,RedirectUrl而是使用友推默认的新浪注册信息 -->
-
+    <!-- IsWebShare设置为true则使用web分享而不是使用默认的调用新浪微博客户端进行分享,有用户在小米等机型下调用新浪微博客户端进行分享时无法获得授权,这样的话请使用web方式进行分享-->
     <SinaWeibo
         AppKey="2502314449"
         AppSecret="df10502d7b422937adea431cd985904a"
         Enable="true"
-        IsNoKeyShare=""
+        IsNoKeyShare="false"
+        IsWebShare="false"
         RedirectUrl="http://youtui.mobi/weiboResponse" />
     <!-- QQ,QQ空间:http://open.qq.com/ -->
 
@@ -56,14 +57,13 @@
         IsNoKeyShare=""
         RedirectUrl="http://yt.bidaround.cn/" />
 
-    <ShortMessage Enable="" />
+    <ShortMessage Enable="true" />
 
     <Email Enable="true" />
-    <!-- 调用系统分享，适用于暂时没有申请到key的分享，该分享不会获得积分，也不会被统计到 -->
+    
     <!-- 复制链接 -->
-
     <CopyLink Enable="true" />
-
+	<!-- 调用系统分享，适用于暂时没有申请到key的分享，该分享不会获得积分，也不会被统计到 -->
     <More Enable="true" />
-
+	<!-- <ScreenCap Enable="true"/> -->
 </KeyInfo>

@@ -128,9 +128,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			// ShareData使用应用分享类型
 			ShareData shareData = new ShareData();
 			shareData.isAppShare = true;
+			/* shareData.setDescription("友推积分组件");
+			shareData.setTitle("友推分享");
+			shareData.setText("通过友推积分组件，开发者几行代码就可以为应用添加分享送积分功能，并提供详尽的后台统计数据，除了本身具备的分享功能外，开发者也可将积分功能单独集成在已有分享组件的app上，快来试试吧 ");
+			shareData.setTarget_url("http://youtui.mobi/");
+			shareData.setImageUrl("http://cdnup.b0.upaiyun.com/media/image/default.png");*/
 
 			YtTemplate blackTemplate = new YtTemplate(this, YouTuiViewType.BLACK_POPUP, true);
 			blackTemplate.setShareData(shareData);
+
 			YtShareListener listener = new YtShareListener() {
 
 				@Override
@@ -161,21 +167,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			blackTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHAT, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, listener);
-			/** 添加分享数据，必需，找不到分享数据就可能空指针异常 */
-			/*
-			 * blackTemplate.addData(YtPlatform.PLATFORM_QQ, shareData);
-			 * blackTemplate.addData(YtPlatform.PLATFORM_QZONE, shareData);
-			 * blackTemplate.addData(YtPlatform.PLATFORM_RENN, shareData);
-			 * blackTemplate.addData(YtPlatform.PLATFORM_SINAWEIBO, shareData);
-			 * blackTemplate.addData(YtPlatform.PLATFORM_TENCENTWEIBO,
-			 * shareData); blackTemplate.addData(YtPlatform.PLATFORM_WECHAT,
-			 * shareData);
-			 * blackTemplate.addData(YtPlatform.PLATFORM_WECHATMOMENTS,
-			 * shareData); blackTemplate.addData(YtPlatform.PLATFORM_MESSAGE,
-			 * shareData); blackTemplate.addData(YtPlatform.PLATFORM_EMAIL,
-			 * shareData); blackTemplate.addData(YtPlatform.PLATFORM_MORE_SHARE,
-			 * shareData);
-			 */
 			blackTemplate.show();
 			break;
 
@@ -188,9 +179,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			contentshareData.setText("通过友推积分组件，开发者几行代码就可以为应用添加分享送积分功能，并提供详尽的后台统计数据，除了本身具备的分享功能外，开发者也可将积分功能单独集成在已有分享组件的app上，快来试试吧 ");
 			contentshareData.setTarget_url("http://youtui.mobi/");
 			contentshareData.setImageUrl("http://cdnup.b0.upaiyun.com/media/image/default.png");
-			// shareData.setImagePath(Environment.getExternalStorageDirectory()+YoutuiConstants.FILE_SAVE_PATH+"demo.png");
 
-			YtTemplate whiteTemplate = new YtTemplate(this, YouTuiViewType.WHITE_LIST, true);
+			YtTemplate whiteTemplate = new YtTemplate(this, YouTuiViewType.WHITE_LIST, false);
 			whiteTemplate.setShareData(contentshareData);
 
 			YtShareListener listener2 = new YtShareListener() {
@@ -223,28 +213,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			whiteTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, listener2);
 			whiteTemplate.addListener(YtPlatform.PLATFORM_WECHAT, listener2);
 			whiteTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, listener2);
-			/** 添加分享数据，必需，找不到分享数据就可能空指针异常 */
-			/*
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_QQ, contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_QZONE,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_RENN,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_SINAWEIBO,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_TENCENTWEIBO,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_WECHAT,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_WECHATMOMENTS,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_MESSAGE,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_EMAIL,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_MORE_SHARE,
-			 * contentshareData);
-			 */
 			whiteTemplate.show();
 			break;
 		case R.id.main_whiteviewpager_bt:
@@ -257,8 +225,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			whiteViewShareData.setText("通过友推积分组件，开发者几行代码就可以为应用添加分享送积分功能，并提供详尽的后台统计数据，除了本身具备的分享功能外，开发者也可将积分功能单独集成在已有分享组件的app上，快来试试吧 ");
 			whiteViewShareData.setTarget_url("http://youtui.mobi/");
 			whiteViewShareData.setImageUrl("http://cdnup.b0.upaiyun.com/media/image/default.png");
-			// shareData.setImagePath(Environment.getExternalStorageDirectory()+YoutuiConstants.FILE_SAVE_PATH+"demo.png");
-
 			YtTemplate whiteGridTemplate = new YtTemplate(this, YouTuiViewType.WHITE_GRID, true);
 			whiteGridTemplate.setShareData(whiteViewShareData);
 
@@ -284,6 +250,15 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				}
 			};
+			
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_QQ, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_QZONE, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_RENN, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_SINAWEIBO, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_TENCENTWEIBO, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_WECHAT, whiteViewShareData);
+			whiteGridTemplate.addData(YtPlatform.PLATFORM_WECHATMOMENTS, whiteViewShareData);
+			
 			/** 添加分享结果监听,如果开发者不需要处理回调事件则不必设置 */
 			whiteGridTemplate.addListener(YtPlatform.PLATFORM_QQ, whiteViewListener);
 			whiteGridTemplate.addListener(YtPlatform.PLATFORM_QZONE, whiteViewListener);
@@ -292,31 +267,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			whiteGridTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, whiteViewListener);
 			whiteGridTemplate.addListener(YtPlatform.PLATFORM_WECHAT, whiteViewListener);
 			whiteGridTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, whiteViewListener);
-			/**
-			 * 为每个平台添加分享数据,如果不单独添加,使用whiteViewTemplate.setShareData(
-			 * whiteViewShareData)设置的分享数据
-			 */
-			/*
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_QQ, contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_QZONE,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_RENN,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_SINAWEIBO,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_TENCENTWEIBO,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_WECHAT,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_WECHATMOMENTS,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_MESSAGE,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_EMAIL,
-			 * contentshareData);
-			 * whiteTemplate.addData(YtPlatform.PLATFORM_MORE_SHARE,
-			 * contentshareData);
-			 */
 			whiteGridTemplate.show();
 
 			break;

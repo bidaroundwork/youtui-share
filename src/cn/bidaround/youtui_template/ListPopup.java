@@ -1,6 +1,7 @@
 package cn.bidaround.youtui_template;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Gravity;
@@ -10,33 +11,38 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import cn.bidaround.point.PointActivity;
 import cn.bidaround.ytcore.YtCore;
 import cn.bidaround.ytcore.activity.ShareActivity;
-import cn.bidaround.ytcore.data.KeyInfo;
 import cn.bidaround.ytcore.data.ShareData;
 import cn.bidaround.ytcore.util.Util;
 
 /**
  * 白色列表样式的分享框
+ * 
  * @author youtui
- * @since 14/5/4 
+ * @since 14/5/4
  */
 public class ListPopup extends YTBasePopupWindow implements OnClickListener {
-	/**用于判断分享页面是否正在运行*/
-	private ArrayList<String> enList = KeyInfo.enList;
+	/** 用于判断分享页面是否正在运行 */
+	private ArrayList<String> enList;
 	private Button sharelist_knowaction_btn;
+	private TextView yt_listpopup_screencap_text;
 	private ShareGridAdapter adapter;
 	private YtTemplate template;
 	private ShareData shareData;
-	public ListPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template,ShareData shareData) {
+
+	public ListPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template, ShareData shareData, ArrayList<String> enList) {
 		super(act, hasAct);
 		this.showStyle = showStyle;
 		this.template = template;
-		this.shareData = shareData ;
+		this.shareData = shareData;
+		this.enList = enList;
 		instance = this;
 	}
+
 	/**
 	 * 显示分享列表窗口
 	 */
@@ -45,7 +51,6 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		View view = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_popup_list", "layout", YtCore.packName), null);
 		initListView(view);
 		initButton(view);
-
 		// 设置popupwindow的属
 		setFocusable(true);
 		setOutsideTouchable(true);
@@ -85,6 +90,9 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		}
 
 		sharelist_knowaction_btn.setOnClickListener(this);
+
+		yt_listpopup_screencap_text = (TextView) view.findViewById(YtCore.res.getIdentifier("yt_listpopup_screencap_text", "id", YtCore.packName));
+		yt_listpopup_screencap_text.setOnClickListener(this);
 	}
 
 	/**
@@ -105,6 +113,18 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 			Intent checkIt = new Intent(act, ShareActivity.class);
 			checkIt.putExtra("from", "check");
 			act.startActivity(checkIt);
+		} else if (v.getId() == YtCore.res.getIdentifier("yt_listpopup_screencap_text", "id", YtCore.packName)) {
+			//截屏按钮
+			TemplateUtil.GetandSaveCurrentImage(act);
+			Intent it = new Intent(act, ScreenCapEditActivity.class);
+			it.putExtra("viewType", template.getViewType());
+			if(shareData.isAppShare){
+				it.putExtra("target_url", YtCore.getTargetUrl());
+			}else{
+				it.putExtra("target_url", shareData.getTarget_url());	
+			}
+			act.startActivity(it);
+			this.dismiss();
 		}
 	}
 
@@ -112,7 +132,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	/**列表项点击事件*/
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
-			new YTShare(act).doListShare(position, template,shareData);
+			new YTShare(act).doListShare(position, template, shareData, instance);
 		} else {
 			Toast.makeText(act, "无网络连接，请查看您的网络情况", Toast.LENGTH_SHORT).show();
 		}
@@ -125,6 +145,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	public void refresh() {
 		adapter.notifyDataSetChanged();
 	}
+
 	/**
 	 * 关闭分享界面
 	 */
@@ -132,9 +153,10 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	public void dismiss() {
 		super.dismiss();
 	}
-	/**关闭 分享界面*/
-	public static void  close(){
-		if(instance!= null){
+
+	/** 关闭 分享界面 */
+	public static void close() {
+		if (instance != null) {
 			instance.dismiss();
 		}
 	}
