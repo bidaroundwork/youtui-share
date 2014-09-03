@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KeyInfo>
+
+    <!-- 分享平台的注册信息，一定要填入在相应平台注册的正确信息，不然应用无法完成授权，也无法进行分享，enable属性决定是否分享该平台 -->
+    <!-- RedirectUrl：授权回调页（当平台有这个字段，就一定要设置） -->
+    <!-- AppId、AppKey、AppSecret都是平台对外需要设置的字段、当需要哪些就设置哪些 -->
+
+
+    <!-- 友推sdk注册地址 : http://youtui.mobi/ -->
+
+    <YouTui AppKey="10033" />
+
+    <!-- 微信和朋友圈注册:https://open.weixin.qq.com/ -->
+
+    <Wechat
+        AppId="wxbc9e6010cf85c3e4"
+        Enable="true" />
+
+    <WechatMoments
+        AppId="wxbc9e6010cf85c3e4"
+        Enable="true" />
+
+    <!-- 新浪微博注册地址:http://open.weibo.com/ -->
+
+    <SinaWeibo
+        AppKey="2502314449"
+        AppSecret="df10502d7b422937adea431cd985904a"
+        Enable="true"
+        IsNoKeyShare="false"
+        IsWebShare="true"
+        RedirectUrl="http://youtui.mobi/weiboResponse" />
+
+    <!-- QQ,QQ空间,腾讯微博注册地址:http://open.qq.com/ -->
+
+    <QQ
+        AppId="1101255276"
+        AppKey="h4sOXgtTtsqRjoOq"
+        Enable="true" />
+
+    <QZone
+        AppId="1101255276"
+        AppKey="h4sOXgtTtsqRjoOq"
+        Enable="true" />
+
+    <TencentWeibo
+        AppKey="801443192"
+        AppSecret="45d65f2d2650637c96ece74f4a67b686"
+        Enable="true"
+        RedirectUrl="http://yt.bidaround.cn/" />
+
+    <!-- 人人注册地址: http://dev.renren.com/ -->
+
+    <Renren
+        AppId="244110"
+        AppKey="b1a80ac1aa694090bfb9aa3a590f2161"
+        Enable="true"
+        SecretKey="506ccdbda36046d197801e79c4ebba23" />
+
+    <ShortMessage Enable="true" />
+
+    <Email Enable="true" />
+
+    <More Enable="true" />
+
+</KeyInfo>

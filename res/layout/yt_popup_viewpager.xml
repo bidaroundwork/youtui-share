@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="320dp"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/yt_blackpopup_header_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center|bottom"
+            android:text="分享到"
+            android:textColor="#f8f8f8"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/yt_blackpopup_screencap_text"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center|bottom"
+            android:text="截屏"
+            android:textColor="#60a1c7"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/sharepopup_indicator_linelay"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_above="@+id/cancel_bt"
+        android:layout_marginBottom="5dp"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/sharepopup_zero_iv"
+            android:layout_width="10dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/yt_guide_dot_white" />
+
+        <ImageView
+            android:id="@+id/sharepopup_one_iv"
+            android:layout_width="10dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/yt_guide_dot_black" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancel_bt"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/yt_btn_style_alert_dialog_cancel_normal"
+        android:gravity="center"
+        android:text="了解积分活动"
+        android:textColor="#ffffff" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/share_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sharepopup_indicator_linelay"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/yt_blackpopup_header_layout"
+        android:layout_marginBottom="5dp" >
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

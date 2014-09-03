@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     >
+
+    <TextView
+        android:id="@+id/whitepagergrid_logo_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/whitepagergrid_item_framelayout"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="新浪微博"
+        android:textColor="#313131" />
+
+    <FrameLayout
+        android:id="@+id/whitepagergrid_item_framelayout"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" >
+
+        <ImageView
+            android:id="@+id/whitepagergrid_logo_imageview"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:src="@drawable/yt_xinlangact" />
+
+        <TextView
+            android:id="@+id/whitepagergrid_point_tv"
+            android:background="@drawable/yt_list_newmessage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="+5"
+            android:textSize="12sp"
+            android:textColor="#ffffff" />
+    </FrameLayout>
+
+</RelativeLayout>
