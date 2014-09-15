@@ -29,11 +29,13 @@ public class YtTemplate{
 	private ShareData capData;
 	private ArrayList<String> enList = new ArrayList<String>();
 	private boolean screencapVisible = true;
+	private boolean hasAct;
 	
 	public YtTemplate(Activity act,int youTuiViewType,boolean needPoint){
 		this.act = act;
 		this.youTuiViewType = youTuiViewType;
-		this.needPoint = needPoint;		
+		this.needPoint = needPoint;	
+		hasAct = needPoint;
 		enList.addAll(KeyInfo.enList);
 	}
 	
@@ -190,9 +192,9 @@ public class YtTemplate{
 	}
 	
 	
-	/**
-	 * 该方法用于设置所有平台的待分享数据,如果开发者没有使用addData(YtPlatform platform, ShareData shareData)方法为特定平台设置待分享数据,则平台分享的内容为此处设置的内容
-	 * @param shareData
+	/**的待分享数据,如果开发者没有使用addData(YtPlatform platform, ShareData shareData)方法为特定平台设置待分享数据,则平台分享的内容为此处设置的内容
+	 * @param shareD
+	 * 该方法用于设置所有平台ata
 	 */
 	public void setShareData(ShareData shareData){
 		this.shareData = shareData;
@@ -215,6 +217,14 @@ public class YtTemplate{
 	 */
 	public void setScreencapVisible(boolean screencapVisible) {
 		this.screencapVisible = screencapVisible;
+	}
+
+	public boolean isHasAct() {
+		return hasAct;
+	}
+
+	public void setHasAct(boolean hasAct) {
+		this.hasAct = hasAct;
 	}
 
 }

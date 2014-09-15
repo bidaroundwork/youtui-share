@@ -4,8 +4,6 @@
     <!-- 分享平台的注册信息，一定要填入在相应平台注册的正确信息，不然应用无法完成授权，也无法进行分享，enable属性决定是否分享该平台 -->
     <!-- RedirectUrl：授权回调页（当平台有这个字段，就一定要设置） -->
     <!-- AppId、AppKey、AppSecret都是平台对外需要设置的字段、当需要哪些就设置哪些 -->
-
-
     <!-- 友推sdk注册地址 : http://youtui.mobi/ -->
 
     <YouTui AppKey="10033" />
@@ -27,7 +25,7 @@
         AppSecret="df10502d7b422937adea431cd985904a"
         Enable="true"
         IsNoKeyShare="false"
-        IsWebShare="true"
+        IsWebShare=""
         RedirectUrl="http://youtui.mobi/weiboResponse" />
 
     <!-- QQ,QQ空间,腾讯微博注册地址:http://open.qq.com/ -->
@@ -59,7 +57,11 @@
     <ShortMessage Enable="true" />
 
     <Email Enable="true" />
+    
+    <QRCode Enable="true" />
 
     <More Enable="true" />
+    
+    
 
 </KeyInfo>

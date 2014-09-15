@@ -207,9 +207,9 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
-				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance);
+				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
 			} else if (adapterView == pagerTwo_gridView) {
-				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance);
+				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
 			}
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));

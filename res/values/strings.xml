@@ -23,4 +23,7 @@
     <string name = "yt_more">更多</string>
     <string name = "yt_copylink">复制链接</string>
     <string name = "yt_screencap">截屏</string>
+    <string name = "yt_qrcode">二维码</string>
+    
+    <string name = "yt_notargeturl">分享链接为空</string>
 </resources>

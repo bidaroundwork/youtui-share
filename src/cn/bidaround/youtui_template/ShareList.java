@@ -32,8 +32,10 @@ public class ShareList {
 	public static final String MORE_SHARE = "More";
 	/**复制链接*/
 	public static final String COPYLINK = "CopyLink";
-	/***/
+	/**截屏*/
 	public static final String SCREENCAP = "ScreenCap";
+	/***/
+	public static final String QRCODE = "QRCode";
 	/**
 	 * 获取分享平台的lolo
 	 * @param name
@@ -77,6 +79,8 @@ public class ShareList {
 			return res.getIdentifier("yt_lianjieact", "drawable", packName);
 		}else if(SCREENCAP.equals(name)){
 			return res.getIdentifier("yt_loadfail", "drawable", packName);
+		}else if(QRCODE.equals(name)){
+			return res.getIdentifier("yt_erweimaact", "drawable", packName);
 		}
 		return -1;
 	}
@@ -112,6 +116,8 @@ public class ShareList {
 			return res.getString(res.getIdentifier("yt_copylink", "string", packName));
 		}else if(SCREENCAP.equals(name)){
 			return res.getString(res.getIdentifier("yt_screencap", "string", packName));
+		}else if(QRCODE.equals(name)){
+			return res.getString(res.getIdentifier("yt_qrcode", "string", packName));
 		}
 		return "";
 	}

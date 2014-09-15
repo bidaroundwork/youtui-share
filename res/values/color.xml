@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="blue">#0bb8f0</color>
-    <color name="black">#303537</color>
+    <color name="yt_blue">#0bb8f0</color>
+    <color name="yt_black">#303537</color>
     
     <color name="yt_cap_red">#cf3326</color>
     <color name="yt_cap_blue">#1d7dd4</color>
@@ -11,5 +11,6 @@
     <color name="yt_cap_green">#73b442</color>
     <color name="yt_cap_orange">#f37600</color>
     <color name="yt_cap_yellow">#ffcc00</color>
-
+	
+    <color name="yt_qrcode_blue">#0054a5</color>
 </resources>

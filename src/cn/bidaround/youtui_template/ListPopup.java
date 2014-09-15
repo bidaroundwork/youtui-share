@@ -146,7 +146,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	/**列表项点击事件*/
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
-			new YTShare(act).doListShare(position, template, shareData, instance);
+			new YTShare(act).doListShare(position, template, shareData, instance,instance.getHeight());
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
 			Toast.makeText(act, noNetwork, Toast.LENGTH_SHORT).show();
