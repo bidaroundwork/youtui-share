@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:numColumns="3"
-        android:focusable="true" >
+        android:focusable="true"
+        android:listSelector="#00ffffff" >
     </GridView>
 </RelativeLayout>

@@ -247,11 +247,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			whiteGridTemplate.setShareData(whiteViewShareData);
 			whiteGridTemplate.setCapData(whiteViewShareData);
 			whiteViewShareData.isAppShare = false;
-			whiteViewShareData.setShareType(ShareData.SHARETYPE_TEXT);
+			whiteViewShareData.setShareType(ShareData.SHARETYPE_IMAGEANDTEXT);
 			whiteViewShareData.setDescription("古井贡酒官方商城");// 待分享内容的描述
 			whiteViewShareData.setTitle("古井贡酒官方商城"); // 待分享的标题
 			whiteViewShareData.setText("新发现一款非常好的购酒APP--#古井贡酒官方商城#,它不仅有牛A喝的酒，还有牛C喝的酒。还等什么，马上下载吧!");// 待分享的文字
 			whiteViewShareData.setTarget_url("http://www.gj519.com/url/?action=download");// 待分享内容的跳转链接
+			whiteViewShareData.setImage(ShareData.IMAGETYPE_APPRESOURE,String.valueOf(R.drawable.yt_erweimaact));
+			
 			// whiteViewShareData.setImageUrl("http://www.gj519.com/url/url_download.png");
 			YtShareListener whiteViewListener = new YtShareListener() {
 				@Override

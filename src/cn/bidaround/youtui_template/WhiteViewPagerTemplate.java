@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Gravity;
@@ -36,6 +37,7 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 	private YtTemplate template;
 	private ShareData shareData;
 	private TextView yt_whiteviewpager_screencap_text;
+	private Handler uiHandler = new Handler();
 	// 没一页包含的分享平台个数
 	private final int ITEM_AMOUNT = 12;
 
@@ -204,13 +206,22 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 	 * 分享按钮点击事件
 	 */
 	@Override
-	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
+	public void onItemClick(final AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
 				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
 			} else if (adapterView == pagerTwo_gridView) {
 				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
 			}
+			adapterView.setEnabled(false);
+			uiHandler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					adapterView.setEnabled(true);
+				}
+			}, 500);
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
 			Toast.makeText(act,noNetwork, Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Gravity;
@@ -40,6 +41,7 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	private ShareData shareData;
 	private final int ITEM_AMOUNT = 6;
 	private TextView yt_blackpopup_screencap_text;
+	private Handler uiHandler = new Handler();
 
 	public ViewPagerPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template, ShareData shareData, ArrayList<String> enList) {
 		super(act, hasAct);
@@ -199,14 +201,24 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 	 * 分享按钮点击事件
 	 */
 	@Override
-	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
+	public void onItemClick(final AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
 				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
+				
 
 			} else if (adapterView == pagerTwo_gridView) {
 				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
 			}
+			adapterView.setEnabled(false);
+			uiHandler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					adapterView.setEnabled(true);
+				}
+			}, 500);
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
 			Toast.makeText(act, noNetwork, Toast.LENGTH_SHORT).show();

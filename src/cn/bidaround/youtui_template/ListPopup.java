@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	private YtTemplate template;
 	private ShareData shareData;
 	private ListPopupAdapter adapter;
+	private Handler uiHandler = new Handler();
 
 	public ListPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template, ShareData shareData, ArrayList<String> enList) {
 		super(act, hasAct);
@@ -144,9 +146,18 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 
 	@Override
 	/**列表项点击事件*/
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+	public void onItemClick(final AdapterView<?> adapterView, final View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			new YTShare(act).doListShare(position, template, shareData, instance,instance.getHeight());
+			adapterView.setEnabled(false);
+			uiHandler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					adapterView.setEnabled(true);
+				}
+			}, 500);
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
 			Toast.makeText(act, noNetwork, Toast.LENGTH_SHORT).show();
