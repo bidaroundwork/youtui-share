@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:background="#e9ecff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#66c0ff"
+        android:clickable="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/shareedit_back_linelay"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/yt_left_arrow" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/shareedit_title_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/shareedit_back_linelay"
+            android:gravity="left|center"
+            android:text="微信"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/shareedit_share_bt"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/shareedit_title_text"
+            android:layout_alignBottom="@+id/shareedit_title_text"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="#66c0ff"
+            android:gravity="center"
+            android:text="分享"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="280dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#f4f4f4" >
+
+        <LinearLayout
+            android:id="@+id/shareedit_title.linelay"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/shareedit_sharetext_edit"
+            android:background="#f4f4f4"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/shareedit_sharetitle_text"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:gravity="center"
+                android:text="分享标题"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/shareeidt_shareimage_image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/yt_wxact" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/shareedit_sharetext_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
+            android:background="#f4f4f4"
+            android:gravity="left|top"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="友推友推友推友推友推友推友推友"
+            android:textColor="#a1a1a1"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+<!--     <Button -->
+<!--         android:id="@+id/shareedit_share_bt" -->
+<!--         android:layout_width="100dp" -->
+<!--         android:layout_height="40dp"  -->
+<!--         android:layout_marginTop="50dp" -->
+<!--         android:text="发送" -->
+<!--         android:textColor="#ffffff" -->
+<!--         android:background="@drawable/sendbutton" -->
+<!--        /> -->
+
+
+</LinearLayout>

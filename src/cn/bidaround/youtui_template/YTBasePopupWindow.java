@@ -62,13 +62,13 @@ public abstract class YTBasePopupWindow extends PopupWindow implements OnItemCli
 							instance.refresh();
 						}
 						if ((Integer) msg.obj != 0) {
-							Toast.makeText(act, "分享成功,积分+" + msg.obj, Toast.LENGTH_SHORT).show();
+							YtToast.showS(act, "分享成功,积分+" + msg.obj);
 						} else {
-							Toast.makeText(act, "分享成功", Toast.LENGTH_SHORT).show();
+							YtToast.showS(act, "分享成功");
 						}
 						break;
 					case SHARE_POINT_FAIL:
-						Toast.makeText(act, "分享成功", Toast.LENGTH_SHORT).show();
+						YtToast.showS(act, "分享成功" );
 						break;
 					default:
 						break;

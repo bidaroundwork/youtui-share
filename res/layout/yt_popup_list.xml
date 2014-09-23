@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/sharelist_selectplatform_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            android:id="@+id/sharelist_selectplatform_text"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="分享到"
+            android:textColor="#a6a6a6"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/yt_listpopup_screencap_text"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="截屏"
+            android:textColor="#1ca3d2"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/popup_list_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/sharelist_selectplatform_layout"
+        android:background="#e1e1e1"
+        android:orientation="horizontal" />
+
+    <ListView
+        android:id="@+id/sharelist_share_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/popup_list_line"
+        android:layout_above="@+id/sharelist_point_linelay"
+        android:divider="#f5f5f5"
+        android:dividerHeight="1dp"
+        android:numColumns="1"
+        android:scrollbars="none" />
+
+    <LinearLayout
+        android:id="@+id/sharelist_point_linelay"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/sharelist_knowaction_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/yt_list_item_unselected_color_border"
+            android:gravity="center"
+            android:paddingTop="10dip"
+            android:text="了解积分活动"
+            android:textColor="#9BC7E4"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

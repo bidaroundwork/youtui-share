@@ -5,4 +5,25 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="youtui_appId">1</string>
+    
+    <string name="yt_sharepic">分享图片</string>
+    <string name= "yt_savecap">截屏文件已保存至SDCard/youtui目录下</string>
+    <string name="yt_pointcharge">积分兑换</string>
+    <string name = "yt_cancel">取消</string>
+    <string name="yt_nonetwork">无网络连接，请查看您的网络情况</string>
+    
+    <string name = "yt_wechat">微信</string>
+    <string name = "yt_wechatmoments">微信朋友圈</string>
+    <string name = "yt_sinaweibo">新浪微博</string>
+    <string name = "yt_qzone">QQ空间</string>
+    <string name = "yt_tencentweibo">腾讯微博</string>
+    <string name = "yt_renn">人人网</string>
+    <string name = "yt_shortmessage">短信</string>
+    <string name = "yt_email">邮件</string>
+    <string name = "yt_more">更多</string>
+    <string name = "yt_copylink">复制链接</string>
+    <string name = "yt_screencap">截屏</string>
+    <string name = "yt_qrcode">二维码</string>
+    
+    <string name = "yt_notargeturl">分享链接为空</string>
 </resources>

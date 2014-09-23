@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,9 +32,11 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	private ArrayList<String> enList;
 	private Button sharelist_knowaction_btn;
 	private TextView yt_listpopup_screencap_text;
-	private ShareGridAdapter adapter;
+	//private ShareGridAdapter adapter;
 	private YtTemplate template;
 	private ShareData shareData;
+	private ListPopupAdapter adapter;
+	private Handler uiHandler = new Handler();
 
 	public ListPopup(Activity act, int showStyle, boolean hasAct, YtTemplate template, ShareData shareData, ArrayList<String> enList) {
 		super(act, hasAct);
@@ -57,12 +61,16 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		setBackgroundDrawable(YtCore.res.getDrawable(YtCore.res.getIdentifier("yt_side", "drawable", YtCore.packName)));
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
-		setHeight(Util.dip2px(act, 350));
+		if(enList.size()<=6){
+			setHeight(LayoutParams.WRAP_CONTENT);
+		}else{
+			setHeight(Util.dip2px(act, 350));
+		}
+		
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		// R.style.YtSharePopupAnim
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
 	}
-
 	/**
 	 * 初始化ListView
 	 * 
@@ -70,7 +78,8 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	 */
 	private void initListView(View view) {
 		ListView listView = (ListView) view.findViewById(YtCore.res.getIdentifier("sharelist_share_list", "id", YtCore.packName));
-		adapter = new ShareGridAdapter(act, enList, showStyle);
+		//adapter = new ShareGridAdapter(act, enList, showStyle);
+		adapter = new ListPopupAdapter(act, enList);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
 	}
@@ -84,15 +93,22 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		// 如果么有活动显示取消，如果有活动显示了解活动规则
 		sharelist_knowaction_btn = (Button) view.findViewById(YtCore.res.getIdentifier("sharelist_knowaction_btn", "id", YtCore.packName));
 		if (hasAct) {
-			sharelist_knowaction_btn.setText("积分兑换");
+			String pointCharge = YtCore.res.getString(YtCore.res.getIdentifier("yt_pointcharge", "string", YtCore.packName));
+			sharelist_knowaction_btn.setText(pointCharge);
 		} else {
-			sharelist_knowaction_btn.setText("取  消");
+			String cancel = YtCore.res.getString(YtCore.res.getIdentifier("yt_cancel", "string", YtCore.packName));
+			sharelist_knowaction_btn.setText(cancel);
 		}
 
 		sharelist_knowaction_btn.setOnClickListener(this);
 
 		yt_listpopup_screencap_text = (TextView) view.findViewById(YtCore.res.getIdentifier("yt_listpopup_screencap_text", "id", YtCore.packName));
 		yt_listpopup_screencap_text.setOnClickListener(this);
+		if(template.isScreencapVisible()){
+			yt_listpopup_screencap_text.setVisibility(View.VISIBLE);
+		}else{
+			yt_listpopup_screencap_text.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	/**
@@ -105,7 +121,6 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 			if (hasAct) {
 				Intent it = new Intent(act, PointActivity.class);
 				act.startActivity(it);
-
 			} else {
 				this.dismiss();
 			}
@@ -115,7 +130,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 			act.startActivity(checkIt);
 		} else if (v.getId() == YtCore.res.getIdentifier("yt_listpopup_screencap_text", "id", YtCore.packName)) {
 			//截屏按钮
-			TemplateUtil.GetandSaveCurrentImage(act);
+			TemplateUtil.GetandSaveCurrentImage(act,true);
 			Intent it = new Intent(act, ScreenCapEditActivity.class);
 			it.putExtra("viewType", template.getViewType());
 			if(shareData.isAppShare){
@@ -123,6 +138,7 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 			}else{
 				it.putExtra("target_url", shareData.getTarget_url());	
 			}
+			it.putExtra("capdata", template.getCapData());
 			act.startActivity(it);
 			this.dismiss();
 		}
@@ -130,11 +146,21 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 
 	@Override
 	/**列表项点击事件*/
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+	public void onItemClick(final AdapterView<?> adapterView, final View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
-			new YTShare(act).doListShare(position, template, shareData, instance);
+			new YTShare(act).doListShare(position, template, shareData, instance,instance.getHeight());
+			adapterView.setEnabled(false);
+			uiHandler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					adapterView.setEnabled(true);
+				}
+			}, 500);
 		} else {
-			Toast.makeText(act, "无网络连接，请查看您的网络情况", Toast.LENGTH_SHORT).show();
+			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
+			Toast.makeText(act, noNetwork, Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -145,7 +171,6 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 	public void refresh() {
 		adapter.notifyDataSetChanged();
 	}
-
 	/**
 	 * 关闭分享界面
 	 */

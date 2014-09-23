@@ -32,8 +32,10 @@ public class ShareList {
 	public static final String MORE_SHARE = "More";
 	/**复制链接*/
 	public static final String COPYLINK = "CopyLink";
-	/***/
+	/**截屏*/
 	public static final String SCREENCAP = "ScreenCap";
+	/***/
+	public static final String QRCODE = "QRCode";
 	/**
 	 * 获取分享平台的lolo
 	 * @param name
@@ -77,6 +79,8 @@ public class ShareList {
 			return res.getIdentifier("yt_lianjieact", "drawable", packName);
 		}else if(SCREENCAP.equals(name)){
 			return res.getIdentifier("yt_loadfail", "drawable", packName);
+		}else if(QRCODE.equals(name)){
+			return res.getIdentifier("yt_erweimaact", "drawable", packName);
 		}
 		return -1;
 	}
@@ -85,31 +89,35 @@ public class ShareList {
 	 * @param name
 	 * @return
 	 */
-	public static String getTitle(String name) {
+	public static String getTitle(String name,Context context) {
+		String packName = context.getPackageName();
+		Resources res = context.getResources();
 		if(WECHAT.equals(name)){
-			return "微信";
+			return res.getString(res.getIdentifier("yt_wechat", "string", packName));
 		}else if(WECHATMOMENTS.equals(name)){
-			return "微信朋友圈";
+			return res.getString(res.getIdentifier("yt_wechatmoments", "string", packName));
 		}else if(SINAWEIBO.equals(name)){
-			return "新浪微博";
+			return res.getString(res.getIdentifier("yt_sinaweibo", "string", packName));
 		}else if(QQ.equals(name)){
 			return "QQ";
 		}else if(QZONE.equals(name)){
-			return "QQ空间";
+			return res.getString(res.getIdentifier("yt_qzone", "string", packName));
 		}else if(TENCENTWEIBO.equals(name)){
-			return "腾讯微博";
+			return res.getString(res.getIdentifier("yt_tencentweibo", "string", packName));
 		}else if(RENREN.equals(name)){
-			return "人人网";
+			return res.getString(res.getIdentifier("yt_renn", "string", packName));
 		}else if(SHORTMESSAGE.equals(name)){
-			return "短信";
+			return res.getString(res.getIdentifier("yt_shortmessage", "string", packName));
 		}else if(EMAIL.equals(name)){
-			return "邮件";
+			return res.getString(res.getIdentifier("yt_email", "string", packName));
 		}else if(MORE_SHARE.equals(name)){
-			return "更多";
+			return res.getString(res.getIdentifier("yt_more", "string", packName));
 		}else if(COPYLINK.equals(name)){
-			return "复制链接";
+			return res.getString(res.getIdentifier("yt_copylink", "string", packName));
 		}else if(SCREENCAP.equals(name)){
-			return "截屏";
+			return res.getString(res.getIdentifier("yt_screencap", "string", packName));
+		}else if(QRCODE.equals(name)){
+			return res.getString(res.getIdentifier("yt_qrcode", "string", packName));
 		}
 		return "";
 	}

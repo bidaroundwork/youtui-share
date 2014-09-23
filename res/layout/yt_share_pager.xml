@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="false" >
+    <GridView
+        android:id="@+id/sharepager_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:focusable="true"
+        android:listSelector="#00ffffff" >
+    </GridView>
+</RelativeLayout>

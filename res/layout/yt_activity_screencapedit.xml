@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dadada"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/yt_screencap_header_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#66c0ff"
+        android:clickable="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/yt_screencap_back_linelay"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/yt_left_arrow" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/yt_screencap_share_bt"
+            android:layout_toRightOf="@+id/yt_screencap_back_linelay"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="编辑截屏"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/yt_screencap_share_bt"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#66c0ff"
+            android:gravity="center"
+            android:text="分享"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/yt_screencap_bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#f0f0f0"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/yt_screencap_choose_paintwidth"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_choose_paintwidth_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/yt_screencap_choose_paintwidth_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yt_screencap_circle_small_off" >
+                </ImageView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_choose_paintwidth_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="#c4c4c4"
+                android:text="粗细" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yt_screencap_choose_color"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_choose_color_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/yt_screencap_choose_color_image"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/yt_colorchoose_red" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_choose_color_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="#c4c4c4"
+                android:text="颜色" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yt_screen_drawrect"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_drawrect_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/yt_screencap_drawrect_image"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/yt_screencap_rectangle_off" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_drawrect_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="#c4c4c4"
+                android:text="矩形" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yt_screen_drawline"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_drawline_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/yt_screencap_drawline_image"
+                    android:layout_width="35dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/yt_screencap_pencil_off" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_drawline_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="#c4c4c4"
+                android:text="画笔" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yt_screencap_clear"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_clear_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/yt_screencap_cancel" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_clear_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textColor="#c4c4c4"
+                android:text="清除" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yt_screencap_save"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/yt_screencap_save_text"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/yt_screencap_save" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yt_screencap_save_text"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:textColor="#c4c4c4"
+                android:gravity="center"
+                android:text="保存" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/yt_screencap_bottom_layout"
+        android:layout_below="@+id/yt_screencap_header_layout"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/yt_screencap_image"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ffffff"
+            android:scaleType="matrix" />
+    </FrameLayout>
+
+</RelativeLayout>

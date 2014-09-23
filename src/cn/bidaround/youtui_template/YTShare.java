@@ -13,6 +13,7 @@ import cn.bidaround.ytcore.data.YtPlatform;
  * @since 14/6/19
  */
 public class YTShare {
+	private String picPath = TemplateUtil.getSDCardPath() + "/youtui/yt_screen.png";
 	private Activity act;
 
 	public YTShare(Activity act) {
@@ -29,7 +30,7 @@ public class YTShare {
 	 * @param ShareData
 	 *            .shareData
 	 */
-	public void doGridShare(int position, int pageIndex, YtTemplate template, ShareData shareData, int itemAmount, YTBasePopupWindow instance) {
+	public void doGridShare(int position, int pageIndex, YtTemplate template, ShareData shareData, int itemAmount, YTBasePopupWindow instance,int height) {
 		// 新浪微博，
 		if (position == template.getIndex(YtPlatform.PLATFORM_SINAWEIBO) % itemAmount && template.getIndex(YtPlatform.PLATFORM_SINAWEIBO) / itemAmount == pageIndex) {
 			if (template.getData(YtPlatform.PLATFORM_SINAWEIBO) != null) {
@@ -118,17 +119,23 @@ public class YTShare {
 				instance.dismiss();
 			}
 			if (template.getData(YtPlatform.PLATFORM_SCREENCAP) != null) {
-				TemplateUtil.GetandSaveCurrentImage(act);
+				TemplateUtil.GetandSaveCurrentImage(act, true);
 				Intent it = new Intent(act, ScreenCapEditActivity.class);
 				it.putExtra("viewType", template.getViewType());
 				it.putExtra("target_url", template.getData(YtPlatform.PLATFORM_SCREENCAP).getTarget_url());
 				act.startActivity(it);
 			} else {
-				TemplateUtil.GetandSaveCurrentImage(act);
+				TemplateUtil.GetandSaveCurrentImage(act, true);
 				Intent it = new Intent(act, ScreenCapEditActivity.class);
 				it.putExtra("viewType", template.getViewType());
 				it.putExtra("target_url", shareData.getTarget_url());
 				act.startActivity(it);
+			}
+		} else if (position == template.getIndex(YtPlatform.PLATFORM_QRCORE) % itemAmount && template.getIndex(YtPlatform.PLATFORM_QRCORE) / itemAmount == pageIndex) {
+			if (shareData.getTarget_url() != null || "".equals(shareData.getTarget_url())) {
+				new QRCodePopup(act, template.isHasAct(), template, shareData,height+10).show();
+			} else {
+				YtToast.showS(act, YtCore.res.getString(YtCore.res.getIdentifier("yt_notargeturl", "string", YtCore.packName)));
 			}
 		}
 	}
@@ -138,7 +145,7 @@ public class YTShare {
 	 * 
 	 * @param position
 	 */
-	public void doListShare(int position, YtTemplate template, ShareData shareData, YTBasePopupWindow instance) {
+	public void doListShare(int position, YtTemplate template, ShareData shareData, YTBasePopupWindow instance,int height) {
 		if (position == template.getIndex(YtPlatform.PLATFORM_SINAWEIBO)) {
 			if (template.getData(YtPlatform.PLATFORM_SINAWEIBO) != null) {
 				YtCore.getInstance().share(act, YtPlatform.PLATFORM_SINAWEIBO, template.getListener(YtPlatform.PLATFORM_SINAWEIBO), template.getData(YtPlatform.PLATFORM_SINAWEIBO));
@@ -220,19 +227,25 @@ public class YTShare {
 				instance.dismiss();
 			}
 			if (template.getData(YtPlatform.PLATFORM_SCREENCAP) != null) {
-				TemplateUtil.GetandSaveCurrentImage(act);
+				TemplateUtil.GetandSaveCurrentImage(act, true);
 				Intent it = new Intent(act, ScreenCapEditActivity.class);
 				it.putExtra("viewType", template.getViewType());
 				it.putExtra("target_url", template.getData(YtPlatform.PLATFORM_SCREENCAP).getTarget_url());
 				act.startActivity(it);
 			} else {
-				TemplateUtil.GetandSaveCurrentImage(act);
+				TemplateUtil.GetandSaveCurrentImage(act, true);
 				Intent it = new Intent(act, ScreenCapEditActivity.class);
 				it.putExtra("viewType", template.getViewType());
 				it.putExtra("target_url", shareData.getTarget_url());
 				act.startActivity(it);
 			}
 
+		} else if (position == template.getIndex(YtPlatform.PLATFORM_QRCORE)) {
+			if (shareData.getTarget_url() != null && !"".equals(shareData.getTarget_url())) {
+				new QRCodePopup(act, template.isHasAct(), template, shareData,height+10).show();
+			} else {
+				YtToast.showS(act, YtCore.res.getString(YtCore.res.getIdentifier("yt_notargeturl", "string", YtCore.packName)));
+			}
 		}
 	}
 }
