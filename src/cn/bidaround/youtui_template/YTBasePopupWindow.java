@@ -1,5 +1,8 @@
 package cn.bidaround.youtui_template;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
@@ -15,7 +18,6 @@ import cn.bidaround.ytcore.data.KeyInfo;
  * @since 14/5/4 
  */
 public abstract class YTBasePopupWindow extends PopupWindow implements OnItemClickListener {
-	private static final String TAG = "at YTBasePopupWindow:";
 	/** 主分享界面实例 */
 	protected static YTBasePopupWindow instance;
 	/** 主分享界面样式 */
@@ -82,6 +84,15 @@ public abstract class YTBasePopupWindow extends PopupWindow implements OnItemCli
 				@Override
 				public void run() {
 					YtPoint.refresh(act, KeyInfo.youTui_AppKey);
+//					String response = YtPoint.getTodayPoints(act, KeyInfo.youTui_AppKey);
+//					if(response!=null&&!response.equals("")){
+//						try {
+//							JSONObject json = new JSONObject(response);
+//							
+//						} catch (JSONException e) {
+//							e.printStackTrace();
+//						}
+//					}
 				}
 			}.start();
 		} else {
@@ -104,5 +115,7 @@ public abstract class YTBasePopupWindow extends PopupWindow implements OnItemCli
 		instance = null;
 		super.dismiss();
 	}
+	
+	
 
 }

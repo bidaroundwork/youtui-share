@@ -65,11 +65,16 @@ public class ViewPagerPopup extends YTBasePopupWindow implements OnClickListener
 		setOutsideTouchable(true);
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
-		if(enList.size()<=3){
-			setHeight(Util.dip2px(act, 215));
+		if(template.getPopwindowHeight()>0){
+			setHeight(template.getPopwindowHeight());
 		}else{
-			setHeight(Util.dip2px(act, 320));
+			if(enList.size()<=3){
+				setHeight(Util.dip2px(act, 215));
+			}else{
+				setHeight(Util.dip2px(act, 320));
+			}
 		}
+
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
 	}

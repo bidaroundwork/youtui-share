@@ -1,7 +1,6 @@
 package cn.bidaround.youtui_template;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
@@ -61,11 +60,16 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 		setBackgroundDrawable(YtCore.res.getDrawable(YtCore.res.getIdentifier("yt_side", "drawable", YtCore.packName)));
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
-		if(enList.size()<=6){
-			setHeight(LayoutParams.WRAP_CONTENT);
+		if(template.getPopwindowHeight()>0){
+			setHeight(template.getPopwindowHeight());
 		}else{
-			setHeight(Util.dip2px(act, 350));
+			if(enList.size()<=6){
+				setHeight(Util.dip2px(act, 350));
+			}else{
+				setHeight(Util.dip2px(act, 350));
+			}
 		}
+
 		
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		// R.style.YtSharePopupAnim
@@ -154,7 +158,6 @@ public class ListPopup extends YTBasePopupWindow implements OnClickListener {
 				
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					adapterView.setEnabled(true);
 				}
 			}, 500);

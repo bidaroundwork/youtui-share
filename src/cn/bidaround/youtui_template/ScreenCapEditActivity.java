@@ -51,7 +51,7 @@ public class ScreenCapEditActivity extends Activity implements OnClickListener {
 	private boolean drawLine = true;
 	private boolean drawRect = false;
 	private Handler mHandler = new Handler();
-	private String picPath = getSDCardPath() + "/youtui/yt_screen.png";
+	public static  String picPath = getSDCardPath() + "/youtui/yt_screen.png";
 	// 默认画细线
 	private boolean drawSmall = true;
 	private int chooseColor = 0;
@@ -209,7 +209,7 @@ public class ScreenCapEditActivity extends Activity implements OnClickListener {
 	/**
 	 * @return
 	 */
-	private String getSDCardPath() {
+	private static String getSDCardPath() {
 		File sdcardDir = null;
 		boolean sdcardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 		if (sdcardExist) {
@@ -393,7 +393,7 @@ public class ScreenCapEditActivity extends Activity implements OnClickListener {
 	}
 
 	/** 保存涂鸦图片 */
-	private void savePic(boolean showMsg) {
+	private  void savePic(boolean showMsg) {
 		YtLog.e("timetamp", System.currentTimeMillis() + "");
 		// 图片存储路径
 		String SavePath = getSDCardPath() + "/youtui";

@@ -31,6 +31,8 @@ public class YTShare {
 	 *            .shareData
 	 */
 	public void doGridShare(int position, int pageIndex, YtTemplate template, ShareData shareData, int itemAmount, YTBasePopupWindow instance,int height) {
+		TemplateUtil.GetandSaveCurrentImage(act, false);	
+		shareData.setImagePath(ScreenCapEditActivity.picPath);
 		// 新浪微博，
 		if (position == template.getIndex(YtPlatform.PLATFORM_SINAWEIBO) % itemAmount && template.getIndex(YtPlatform.PLATFORM_SINAWEIBO) / itemAmount == pageIndex) {
 			if (template.getData(YtPlatform.PLATFORM_SINAWEIBO) != null) {
@@ -146,6 +148,8 @@ public class YTShare {
 	 * @param position
 	 */
 	public void doListShare(int position, YtTemplate template, ShareData shareData, YTBasePopupWindow instance,int height) {
+		TemplateUtil.GetandSaveCurrentImage(act, false);	
+		shareData.setImagePath(ScreenCapEditActivity.picPath);
 		if (position == template.getIndex(YtPlatform.PLATFORM_SINAWEIBO)) {
 			if (template.getData(YtPlatform.PLATFORM_SINAWEIBO) != null) {
 				YtCore.getInstance().share(act, YtPlatform.PLATFORM_SINAWEIBO, template.getListener(YtPlatform.PLATFORM_SINAWEIBO), template.getData(YtPlatform.PLATFORM_SINAWEIBO));

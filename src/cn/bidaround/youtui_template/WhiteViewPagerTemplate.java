@@ -23,13 +23,14 @@ import cn.bidaround.ytcore.util.Util;
 
 /**
  * 白色九宫格样式模板
+ * 
  * @author youtui
  * @since 14/6/25
  */
 public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClickListener, OnPageChangeListener {
 	private GridView pagerOne_gridView, pagerTwo_gridView;
-	//private ShareGridAdapter pagerOne_gridAdapter, pagerTwo_gridAdapter;
-	private WhiteViewPagerAdapter pagerOne_gridAdapter,pagerTwo_gridAdapter;
+	// private ShareGridAdapter pagerOne_gridAdapter, pagerTwo_gridAdapter;
+	private WhiteViewPagerAdapter pagerOne_gridAdapter, pagerTwo_gridAdapter;
 	private View sharepopup_indicator_linelay;
 	private ImageView zeroIamge, oneIamge;
 	private ArrayList<String> enList;
@@ -74,13 +75,19 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 		setBackgroundDrawable(YtCore.res.getDrawable(YtCore.res.getIdentifier("yt_side", "drawable", YtCore.packName)));
 		setContentView(view);
 		setWidth(act.getWindowManager().getDefaultDisplay().getWidth());
-		if(enList.size()<=3){
-			setHeight(Util.dip2px(act, 230));
-		}else if(3<enList.size()&&enList.size()<=6){
-			setHeight(Util.dip2px(act, 340));
-		}else if(enList.size()>6){
-			setHeight(Util.dip2px(act, 450));
+		
+		if (template.getPopwindowHeight() > 0) {
+			setHeight(template.getPopwindowHeight());
+		} else {
+			if (enList.size() <= 3) {
+				setHeight(Util.dip2px(act, 230));
+			} else if (3 < enList.size() && enList.size() <= 6) {
+				setHeight(Util.dip2px(act, 340));
+			} else if (enList.size() > 6) {
+				setHeight(Util.dip2px(act, 450));
+			}
 		}
+
 		setAnimationStyle(YtCore.res.getIdentifier("YtSharePopupAnim", "style", YtCore.packName));
 		showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
 	}
@@ -106,9 +113,9 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 
 		yt_whiteviewpager_screencap_text = (TextView) view.findViewById(YtCore.res.getIdentifier("yt_whiteviewpager_screencap_text", "id", YtCore.packName));
 		yt_whiteviewpager_screencap_text.setOnClickListener(this);
-		if(template.isScreencapVisible()){
+		if (template.isScreencapVisible()) {
 			yt_whiteviewpager_screencap_text.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			yt_whiteviewpager_screencap_text.setVisibility(View.INVISIBLE);
 		}
 	}
@@ -125,7 +132,8 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 		if (enList.size() <= ITEM_AMOUNT) {
 			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerOne_gridView = (GridView) pagerOne.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
-			//pagerOne_gridAdapter = new ShareGridAdapter(act, enList, showStyle);
+			// pagerOne_gridAdapter = new ShareGridAdapter(act, enList,
+			// showStyle);
 			pagerOne_gridAdapter = new WhiteViewPagerAdapter(act, enList);
 			pagerOne_gridView.setAdapter(pagerOne_gridAdapter);
 			pagerOne_gridView.setOnItemClickListener(this);
@@ -139,7 +147,8 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 			// 初始化第一页
 			View pagerOne = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerOne_gridView = (GridView) pagerOne.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
-			//pagerOne_gridAdapter = new ShareGridAdapter(act, pagerOneList, showStyle);
+			// pagerOne_gridAdapter = new ShareGridAdapter(act, pagerOneList,
+			// showStyle);
 			pagerOne_gridAdapter = new WhiteViewPagerAdapter(act, pagerOneList);
 			pagerOne_gridView.setAdapter(pagerOne_gridAdapter);
 			pagerOne_gridView.setOnItemClickListener(this);
@@ -152,7 +161,8 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 			// 初始化第二页
 			View pagerTwo = LayoutInflater.from(act).inflate(YtCore.res.getIdentifier("yt_share_pager", "layout", YtCore.packName), null);
 			pagerTwo_gridView = (GridView) pagerTwo.findViewById(YtCore.res.getIdentifier("sharepager_grid", "id", YtCore.packName));
-			//pagerTwo_gridAdapter = new ShareGridAdapter(act, pagerTwoList, showStyle);
+			// pagerTwo_gridAdapter = new ShareGridAdapter(act, pagerTwoList,
+			// showStyle);
 			pagerTwo_gridAdapter = new WhiteViewPagerAdapter(act, pagerTwoList);
 			pagerTwo_gridView.setAdapter(pagerTwo_gridAdapter);
 			pagerTwo_gridView.setOnItemClickListener(this);
@@ -188,7 +198,7 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 			}
 		} else if (v.getId() == YtCore.res.getIdentifier("yt_whiteviewpager_screencap_text", "id", YtCore.packName)) {
 			// 截屏按钮
-			TemplateUtil.GetandSaveCurrentImage(act,true);
+			TemplateUtil.GetandSaveCurrentImage(act, true);
 			Intent it = new Intent(act, ScreenCapEditActivity.class);
 			it.putExtra("viewType", template.getViewType());
 			if (shareData.isAppShare) {
@@ -209,13 +219,13 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 	public void onItemClick(final AdapterView<?> adapterView, View arg1, int position, long arg3) {
 		if (Util.isNetworkConnected(act)) {
 			if (adapterView == pagerOne_gridView) {
-				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
+				new YTShare(act).doGridShare(position, 0, template, shareData, ITEM_AMOUNT, instance, instance.getHeight());
 			} else if (adapterView == pagerTwo_gridView) {
-				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance,instance.getHeight());
+				new YTShare(act).doGridShare(position, 1, template, shareData, ITEM_AMOUNT, instance, instance.getHeight());
 			}
 			adapterView.setEnabled(false);
 			uiHandler.postDelayed(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
@@ -224,7 +234,7 @@ public class WhiteViewPagerTemplate extends YTBasePopupWindow implements OnClick
 			}, 500);
 		} else {
 			String noNetwork = YtCore.res.getString(YtCore.res.getIdentifier("yt_nonetwork", "string", YtCore.packName));
-			Toast.makeText(act,noNetwork, Toast.LENGTH_SHORT).show();
+			Toast.makeText(act, noNetwork, Toast.LENGTH_SHORT).show();
 		}
 	}
 

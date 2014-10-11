@@ -30,6 +30,7 @@ public class YtTemplate{
 	private ArrayList<String> enList = new ArrayList<String>();
 	private boolean screencapVisible = true;
 	private boolean hasAct;
+	private int popwindowHeight;
 	
 	public YtTemplate(Activity act,int youTuiViewType,boolean needPoint){
 		this.act = act;
@@ -91,7 +92,7 @@ public class YtTemplate{
 		}
 	}
 	
-	
+	/**调出截屏分享界面*/
 	public void showScreenCap(){
 		TemplateUtil.GetandSaveCurrentImage(act, false);
 		
@@ -104,6 +105,17 @@ public class YtTemplate{
 		}
 		it.putExtra("capdata", getCapData());
 		act.startActivity(it);
+	}
+	
+	/**调出分享界面,分享的图片为截屏(替换分享内容中的图片)*/
+	public void showScreenCapShare(){
+		if(youTuiViewType == YouTuiViewType.BLACK_POPUP){	
+			new ViewPagerPopup(act, youTuiViewType, needPoint,this,shareData,enList).show();
+		}else if(youTuiViewType == YouTuiViewType.WHITE_LIST){
+			new ListPopup(act, youTuiViewType, needPoint, this,shareData,enList).show();
+		}else if(youTuiViewType == YouTuiViewType.WHITE_GRID){
+			new WhiteViewPagerTemplate(act, youTuiViewType, needPoint, this, shareData,enList).show();
+		}
 	}
 	
 	public String getScreenCapPath(){
@@ -225,6 +237,17 @@ public class YtTemplate{
 
 	public void setHasAct(boolean hasAct) {
 		this.hasAct = hasAct;
+	}
+
+	public int getPopwindowHeight() {
+		return popwindowHeight;
+	}
+	/**
+	 * 设置弹出分享框的高度
+	 * @param popwindowHeight
+	 */
+	public void setPopwindowHeight(int popwindowHeight) {
+		this.popwindowHeight = popwindowHeight;
 	}
 
 }

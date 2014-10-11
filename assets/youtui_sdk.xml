@@ -6,7 +6,7 @@
     <!-- AppId、AppKey、AppSecret都是平台对外需要设置的字段、当需要哪些就设置哪些 -->
     <!-- 友推sdk注册地址 : http://youtui.mobi/ -->
 
-    <YouTui AppKey="308769" />
+    <YouTui AppKey="10031" />
 
     <!-- 微信和朋友圈注册:https://open.weixin.qq.com/ -->
 
@@ -25,7 +25,7 @@
         AppSecret="df10502d7b422937adea431cd985904a"
         Enable="true"
         IsNoKeyShare="false"
-        IsWebShare=""
+        IsWebShare="true"
         RedirectUrl="http://youtui.mobi/weiboResponse" />
 
     <!-- QQ,QQ空间,腾讯微博注册地址:http://open.qq.com/ -->

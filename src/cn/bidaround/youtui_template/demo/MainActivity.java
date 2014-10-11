@@ -175,6 +175,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			blackTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHAT, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, listener);
+			blackTemplate.setPopwindowHeight(700);
 			blackTemplate.show();
 			break;
 
@@ -183,7 +184,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			ShareData contentshareData = new ShareData();
 			contentshareData.isAppShare = false;
 			contentshareData.setDescription("友推积分组件");
-			contentshareData.setShareType(ShareData.SHARETYPE_MUSIC);
+			contentshareData.setShareType(ShareData.SHARETYPE_IMAGEANDTEXT);
 			contentshareData.setTitle("友推分享");
 			contentshareData.setText("通过友推积分组件，开发者几行代码就可以为应用添加分享送积分功能，并提供详尽的后台统计数据，除了本身具备的分享功能外，开发者也可将积分功能单独集成在已有分享组件的app上，快来试试吧 ");
 			contentshareData.setTarget_url("http://youtui.mobi/");
@@ -208,7 +209,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onPreShare() {
-
+					YtLog.e("----", "onPreShare");
 				}
 
 				@Override
@@ -218,7 +219,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onCancel() {
-
+					YtLog.e("----", "onCancel");
 				}
 			};
 			/** 添加监听事件，非必需 */
