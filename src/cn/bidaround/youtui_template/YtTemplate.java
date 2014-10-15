@@ -48,7 +48,11 @@ public class YtTemplate{
 	public void addData(YtPlatform platform, ShareData shareData) {
 		shareDataMap.put(platform, shareData);
 	}
-	
+	/**
+	 * 获取该平台在分享框的位置
+	 * @param platform
+	 * @return
+	 */
 	public int getIndex(YtPlatform platform){
 		return enList.indexOf(YtPlatform.getPlatfornName(platform));
 	}	
@@ -211,15 +215,24 @@ public class YtTemplate{
 	public void setShareData(ShareData shareData){
 		this.shareData = shareData;
 	}
-
+	/**
+	 * 获得分享数据
+	 * @return
+	 */
 	public ShareData getCapData() {
 		return capData;
 	}
-
+	/**
+	 * 设置分享数据
+	 * @param capData
+	 */
 	public void setCapData(ShareData capData) {
 		this.capData = capData;
 	}
-	
+	/**
+	 * 是否显示截屏
+	 * @return
+	 */
 	public boolean isScreencapVisible() {
 		return screencapVisible;
 	}
@@ -230,15 +243,25 @@ public class YtTemplate{
 	public void setScreencapVisible(boolean screencapVisible) {
 		this.screencapVisible = screencapVisible;
 	}
-
+	/**
+	 * 判断是否有活动
+	 * @return
+	 */
 	public boolean isHasAct() {
 		return hasAct;
 	}
-
+	
+	/**
+	 * 设置是否有活动
+	 * @param hasAct
+	 */
 	public void setHasAct(boolean hasAct) {
 		this.hasAct = hasAct;
 	}
-
+	/**
+	 * 获取分享框高度
+	 * @return
+	 */
 	public int getPopwindowHeight() {
 		return popwindowHeight;
 	}

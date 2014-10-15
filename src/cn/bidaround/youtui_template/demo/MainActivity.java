@@ -175,7 +175,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			blackTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHAT, listener);
 			blackTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, listener);
-			blackTemplate.setPopwindowHeight(700);
+			blackTemplate.setPopwindowHeight(400);
 			blackTemplate.show();
 			break;
 
@@ -230,8 +230,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			whiteTemplate.addListener(YtPlatform.PLATFORM_TENCENTWEIBO, listener2);
 			whiteTemplate.addListener(YtPlatform.PLATFORM_WECHAT, listener2);
 			whiteTemplate.addListener(YtPlatform.PLATFORM_WECHATMOMENTS, listener2);
-			whiteTemplate.show();
+			whiteTemplate.setPopwindowHeight(400);
 			whiteTemplate.setToastVisible(false);
+			whiteTemplate.show();
 			break;
 		case R.id.main_whiteviewpager_bt:
 			// ShareData使用内容分享类型分享类型

@@ -20,6 +20,17 @@
 
     <!-- 新浪微博注册地址:http://open.weibo.com/ -->
 
+
+    <!--
+                     <SinaWeibo
+        AppKey="834436808"
+        AppSecret="d4686c671e83ef8f4a9d46333107ce3e"
+        Enable="true"
+        IsNoKeyShare="false"
+        IsWebShare="false"
+        RedirectUrl="http://youtui.mobi/weiboResponse" />
+    -->
+
     <SinaWeibo
         AppKey="2502314449"
         AppSecret="df10502d7b422937adea431cd985904a"
@@ -57,11 +68,9 @@
     <ShortMessage Enable="true" />
 
     <Email Enable="true" />
-    
+
     <QRCode Enable="true" />
 
     <More Enable="true" />
-    
-    
 
 </KeyInfo>
