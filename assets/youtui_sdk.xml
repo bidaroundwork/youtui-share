@@ -1,67 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <KeyInfo>
 
-    <!-- 分享平台的注册信息，一定要填入在相应平台注册的正确信息，不然应用无法完成授权，也无法进行分享，enable属性决定是否分享该平台 -->
-    <!-- RedirectUrl：授权回调页（当平台有这个字段，就一定要设置） -->
-    <!-- AppId、AppKey、AppSecret都是平台对外需要设置的字段、当需要哪些就设置哪些 -->
-    <!-- 友推sdk注册地址 : http://youtui.mobi/ -->
+    <!-- 
+    	分享平台的注册信息，一定要填入在相应平台注册的正确信息，不然应用无法完成授权，也无法进行分享，Enable属性决定是否分享该平台 
+    	
+    	RedirectUrl：授权回调页（当平台有这个字段，就一定要设置）
+    	AppId、AppKey、AppSecret都是平台对外需要设置的字段、当需要哪些就设置哪些
+    	
+    	社交平台注册地址：
+    	微信			http://open.weixin.qq.com
+		新浪微博		http://open.weibo.com
+		腾讯微博		http://dev.t.qq.com
+		QQ空间、QQ	http://open.qq.com/
+		微信好友		http://open.weixin.qq.com
+		易信 			http://open.yixin.im/
+		开心网		http://open.kaixin001.com/   
+		人人网		http://dev.renren.com
+		
+		注意：使用demo进行开心网分享时提示“你要连接的网站尚未通过审核”，测试demo可使用账号：bidaround 密码:123456789
+    -->
 
-    <YouTui AppKey="308769" />
+	<!-- 
+		请在友推官网注册，提交应用，获取AppKey/AppSecret  http://youtui.mobi/ 
+		注意： 如果在友推只提供AppKey，在AppKey和AppSecret处都写AppKey值；若友推有提供AppSecret请填写相应的AppSecret值
+	-->
+	<YouTui 
+	    AppKey="330456" 
+	    AppSecret="11A7B37C2C0F230" 
+	    /> 
 
-    <!-- 微信和朋友圈注册:https://open.weixin.qq.com/ -->
-
+	
+    <!-- 微信 -->
     <Wechat
         AppId="wxbc9e6010cf85c3e4"
+        AppSecret="5a99fbb0ac4dd3bf93aadf1b6000d9b4"
         Enable="true" />
 
+    <!-- 微信朋友圈 -->
     <WechatMoments
         AppId="wxbc9e6010cf85c3e4"
+        AppSecret="5a99fbb0ac4dd3bf93aadf1b6000d9b4"
         Enable="true" />
 
-    <!-- 新浪微博注册地址:http://open.weibo.com/ -->
+    <!-- 微信收藏 -->
+    <WechatFavorite
+        AppId="wxbc9e6010cf85c3e4"
+        AppSecret="5a99fbb0ac4dd3bf93aadf1b6000d9b4"
+        Enable="true" />
 
+    <!-- 新浪微博 -->
     <SinaWeibo
-        AppKey="2502314449"
+        AppId="2502314449"
         AppSecret="df10502d7b422937adea431cd985904a"
+        RedirectUrl="http://youtui.mobi/weiboResponse" 
+        IsWebShare="false"
         Enable="true"
-        IsNoKeyShare="false"
-        IsWebShare=""
-        RedirectUrl="http://youtui.mobi/weiboResponse" />
+        />
 
-    <!-- QQ,QQ空间,腾讯微博注册地址:http://open.qq.com/ -->
-
+    <!-- QQ -->
     <QQ
         AppId="1101255276"
         AppKey="h4sOXgtTtsqRjoOq"
         Enable="true" />
 
+    <!-- QQ空间 -->
     <QZone
         AppId="1101255276"
         AppKey="h4sOXgtTtsqRjoOq"
         Enable="true" />
 
+    <!-- 腾讯微博 -->
     <TencentWeibo
-        AppKey="801443192"
+        AppId="801443192"
         AppSecret="45d65f2d2650637c96ece74f4a67b686"
-        Enable="true"
-        RedirectUrl="http://yt.bidaround.cn/" />
+        RedirectUrl="http://yt.bidaround.cn/"
+        Enable="true" />
 
-    <!-- 人人注册地址: http://dev.renren.com/ -->
+    <!--
+    	易信分享申请的appID， 如果该应用没有通过审核，没办法监听分享回调的；
+    	如果需要测试，可以使用友推测试appID:yxed856ced6cba46e5b66cc08930ec9ddb,包名必须修改为cn.bidaround.youtui
+    -->
+    <Yixin
+        AppId="yxed856ced6cba46e5b66cc08930ec9ddb"
+        Enable="true" />
+    
+    <!-- 易信朋友圈 -->
+    <YixinFriends
+        AppId="yxed856ced6cba46e5b66cc08930ec9ddb"
+        Enable="true" />
 
+    <!-- 开心网 -->
+    <Kaixin
+        AppId="6107778234225d80591ed55fceeada2b"
+        AppSecret="13e55daedb5b60ed0fb7bd6b18839f31"
+        Enable="true" 
+        />
+
+    <!-- 人人网 -->
     <Renren
         AppId="244110"
         AppKey="b1a80ac1aa694090bfb9aa3a590f2161"
+        AppSecret="506ccdbda36046d197801e79c4ebba23" 
         Enable="true"
-        SecretKey="506ccdbda36046d197801e79c4ebba23" />
+        />
 
+    <!-- 短信 -->
     <ShortMessage Enable="true" />
 
+    <!-- 邮件 -->
     <Email Enable="true" />
-    
-    <QRCode Enable="true" />
 
+    <!-- 复制链接 -->
+    <CopyLink Enable="true" />
+
+   	<!-- 更多 -->
     <More Enable="true" />
-    
-    
-
 </KeyInfo>

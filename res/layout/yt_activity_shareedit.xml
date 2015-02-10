@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
     android:background="#e9ecff"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -34,7 +34,6 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/shareedit_back_linelay"
             android:gravity="left|center"
-            android:text="微信"
             android:textColor="#ffffff"
             android:textSize="18sp" />
 
@@ -73,7 +72,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:gravity="center"
-                android:text="分享标题"
                 android:textColor="#000000" />
 
             <ImageView
@@ -83,8 +81,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/yt_wxact" />
+                android:scaleType="fitXY" />
         </LinearLayout>
 
         <EditText
@@ -97,20 +94,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="8dp"
-            android:text="友推友推友推友推友推友推友推友"
             android:textColor="#a1a1a1"
             android:textSize="12sp" />
     </RelativeLayout>
-
-<!--     <Button -->
-<!--         android:id="@+id/shareedit_share_bt" -->
-<!--         android:layout_width="100dp" -->
-<!--         android:layout_height="40dp"  -->
-<!--         android:layout_marginTop="50dp" -->
-<!--         android:text="发送" -->
-<!--         android:textColor="#ffffff" -->
-<!--         android:background="@drawable/sendbutton" -->
-<!--        /> -->
-
-
 </LinearLayout>

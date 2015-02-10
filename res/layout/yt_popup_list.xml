@@ -52,7 +52,9 @@
         android:divider="#f5f5f5"
         android:dividerHeight="1dp"
         android:numColumns="1"
-        android:scrollbars="none" />
+        android:listSelector="#00000000"
+        android:scrollbars="none" 
+        />
 
     <LinearLayout
         android:id="@+id/sharelist_point_linelay"

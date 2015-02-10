@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:paddingBottom="20dp"
+    android:paddingTop="5dp"
+    >
+
+    <Button
+        android:id="@+id/ytmain_whitegrid"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="白色网格模板" 
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:id="@+id/ytmain_whitegridcenter"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="白色网格模板(居中)" 
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:id="@+id/ytmain_blackgrid"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="黑色网格模板" 
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:id="@+id/ytmain_whitelist"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="白色列表模板" 
+        android:onClick="onClick"
+        />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/appshare_no" 
+        android:onClick="toggle"
+        />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/point_on" 
+        android:onClick="toggle"
+        />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/check_off" 
+        android:onClick="toggle"
+        />
+    
+     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/cap_show" 
+        android:onClick="toggle"
+        />
+     
+     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/picture_http" 
+        android:onClick="toggle"
+        />
+     
+     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/popheight_default" 
+        android:onClick="toggle"
+        />
+     
+     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/pop_call_show" 
+        android:onClick="toggle"
+        />
+
+    <View 
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center"
+        android:text="第三方授权登录：" 
+        android:layout_marginLeft="10dp"
+        />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+
+            <ImageView
+                android:id="@+id/ytmain_sina_auth"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/yt_sinaweibo" 
+                android:onClick="onClick"
+                android:contentDescription="@null"
+                />
+
+            <ImageView
+                android:id="@+id/ytmain_qq_auth"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/yt_qq" 
+                android:onClick="onClick"
+                android:contentDescription="@null"
+                />
+
+            <ImageView
+                android:id="@+id/ytmain_tencentwb_auth"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/yt_tencentweibo"
+                android:onClick="onClick"
+                android:contentDescription="@null"
+                 />
+
+            <ImageView
+                android:id="@+id/ytmain_wechat_auth"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/yt_wechat" 
+                android:onClick="onClick"
+                android:contentDescription="@null"
+                />
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>

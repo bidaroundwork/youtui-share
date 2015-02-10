@@ -1,9 +1,8 @@
 package cn.bidaround.youtui.wxapi;
-/**
- * 用于演示微信分享
+
+/** 
+ * 微信相关的分享和授权需要有该activity，必须写在包名+.wxapi包下，类名必须为WXEntryActivity
  * @author youtui
- * @since 14/6/19
- *
  */
 public class WXEntryActivity extends cn.bidaround.ytcore.wxapi.WXEntryActivity {
 

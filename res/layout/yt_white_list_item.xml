@@ -12,34 +12,34 @@
         android:paddingTop="4dip" >
 
         <ImageView
-            android:id="@+id/sharelistitem_logo_image"
+            android:id="@+id/logo"
             android:layout_width="40dip"
             android:layout_height="40dip"
-            android:layout_marginLeft="15dip" >
+            android:layout_marginLeft="15dip"
+            android:contentDescription="@null"
+            >
         </ImageView>
 
         <TextView
-            android:id="@+id/sharelistitem_platform_text"
+            android:id="@+id/platform_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingLeft="18dip"
             android:textColor="#313131"
-            android:text="新浪微博"
             android:textSize="14sp" >
         </TextView>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/sharelistitem_point_text"
+        android:id="@+id/point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="8dip"
-        android:background="@drawable/yt_list_newmessage"
         android:gravity="center"
-        android:textColor="#ffffff"
+        android:textColor="#f7ac0a"
         android:textSize="12sp" >
     </TextView>
 

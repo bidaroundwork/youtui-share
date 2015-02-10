@@ -53,6 +53,14 @@
             android:layout_width="10dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/yt_guide_dot_black" />
+        
+        <ImageView
+            android:id="@+id/sharepopup_two_iv"
+            android:layout_width="10dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/yt_guide_dot_black" />
     </LinearLayout>
 

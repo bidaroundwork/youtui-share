@@ -1,0 +1,21 @@
+<resources>
+    <style name="YtDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+    </style>
+
+    <style name="YtAuthDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="YtSharePopupAnim">
+        <item name="android:windowEnterAnimation">@anim/yt_sharepopup_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/yt_sharepopup_fade_out</item>
+    </style>
+
+    <style name="YtSharePopupAnimFast">
+        <item name="android:windowEnterAnimation">@anim/yt_sharepopup_fade_in_fast</item>
+        <item name="android:windowExitAnimation">@anim/yt_sharepopup_fade_out_fast</item>
+    </style>
+
+</resources>

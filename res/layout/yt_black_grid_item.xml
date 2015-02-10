@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/logo_textview"
+        android:id="@+id/platform_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,32 +13,41 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:singleLine="true"
-        android:text="新浪微博"
         android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/point"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/platform_name"
+        android:gravity="center"
+        android:textColor="#f7ac0a"
+        android:textSize="12sp"/>
 
     <FrameLayout
         android:id="@+id/pagergrid_item_framelayout"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
+        android:layout_marginTop="10dp" >
 
         <ImageView
-            android:id="@+id/logo_imageview"
+            android:id="@+id/logo"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="center"
-            android:src="@drawable/yt_xinlangact" />
+            android:contentDescription="@null"
+            />
 
         <TextView
-            android:id="@+id/griditem_point_tv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/sign"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_gravity="right"
-            android:background="@drawable/yt_list_newmessage"
+            android:background="@drawable/yt_reddot"
             android:gravity="center"
-            android:text="+5"
+
             android:textColor="#ffffff"
             android:textSize="12sp" />
     </FrameLayout>

@@ -1,20 +1,33 @@
 # To enable ProGuard in your project, edit project.properties
 # to define the proguard.config property as described in that file.
-#
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in ${sdk.dir}/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# 微信：
+-keep class com.tencent.mm.sdk.openapi.WXMediaMessage { *;}
+-keep class com.tencent.mm.sdk.openapi.** implements com.tencent.mm.sdk.openapi.WXMediaMessage$IMediaObject {*;}
+-keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage { *;}
+-keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
 
-# Add any project specific keep options here:
+# qq和qq空间:
+-keep class com.tencent.open.TDialog$*
+-keep class com.tencent.open.TDialog$* {*;}
+-keep class com.tencent.open.PKDialog
+-keep class com.tencent.open.PKDialog {*;}
+-keep class com.tencent.open.PKDialog$*
+-keep class com.tencent.open.PKDialog$* {*;}
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# 易信
+-keep class im.yixin.sdk.api.YXMessage {*;}
+-keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+
+# 腾讯微博需要使用到的HttpClient混淆
+-dontwarn org.apache.commons.httpclient.**  
+-keep public class org.apache.commons.httpclient.** {*;} 
+-keep public class org.apache.commons.httpclient.auth.** {*;} 
+-keep public class org.apache.commons.httpclient.cookie.** {*;} 
+-keep public class org.apache.commons.httpclient.methods.** {*;} 
+-keep public class org.apache.commons.httpclient.params.** {*;} 
+-keep public class org.apache.commons.httpclient.util.** {*;} 
+-keep public class org.apache.commons.codec.net.** {*;} 
+-keep public class org.apache.commons.logging.** {*;} 
+-keep public class org.apache.commons.logging.impl.** {*;} 
+-keep public class org.apache.commons.codec.** {*;} 
+-keep public class org.apache.commons.codec.binary.** {*;}
